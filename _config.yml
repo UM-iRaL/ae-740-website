@@ -1,0 +1,33 @@
+title: "Online Learning for Control (Fall 2025)"
+description: "AEROSP740 -- Fall 2025"
+# Remote theme pin to a tag for stability; bump later when you want.
+remote_theme: just-the-docs/just-the-docs@v0.8.0
+
+# just-the-docs options
+# logo: /assets/img/cover_image.jpg
+search_enabled: true
+heading_anchors: true
+aux_links:
+  Syllabus: https://tinyurl.com/740-25-syllabus
+nav_external_links_new_tab: true
+
+# Build/site
+url: ""
+baseurl: ""   # set to "/my-course-site" if publishing as a project site
+permalink: pretty
+
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag   # optional later
+  # - jekyll-sitemap   # optional later
+
+just_the_docs:
+  # Load your CSS
+  aux_css:
+    - /assets/css/custom.css
+
+callouts:
+  warning:
+    title: 
+    color: yellow

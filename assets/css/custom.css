@@ -1,0 +1,3 @@
+/* Example tweaks: line length, link underline on hover */
+:root { --jtd-content-width: 820px; }
+a:hover { text-decoration: underline; }
