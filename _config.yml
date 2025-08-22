@@ -12,8 +12,8 @@ aux_links:
 nav_external_links_new_tab: true
 
 # Build/site
-url: ""
-baseurl: ""   # set to "/my-course-site" if publishing as a project site
+url: "https://UM-iRaL.github.io"
+baseurl: "/ae-740-website"   # set to "/my-course-site" if publishing as a project site
 permalink: pretty
 
 
