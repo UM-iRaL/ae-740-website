@@ -14,5 +14,5 @@ nav_order: 1
 This website will be used to publish course labs, handouts, and other materials.  
 All important resources and updates for the course will be available here.
 
-- Start with **[Lectures](/lectures/)**  
-- See **[Lab Handouts](/labs/)**  
+- Start with **[Lectures](lectures/)**  
+- See **[Lab Handouts](labs/)**  
