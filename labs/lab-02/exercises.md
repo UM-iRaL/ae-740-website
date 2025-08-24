@@ -1,8 +1,8 @@
 ---
 layout: default
 title: "Exercises"
-parent: "Lab 2"
-grand_parent: Labs
+parent: 
+grand_parent: 
 nav_order: 3
 has_toc: true
 ---

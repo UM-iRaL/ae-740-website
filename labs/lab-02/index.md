@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Lab 2"
-parent: Labs
+parent: 
 nav_order: 2
 ---
 

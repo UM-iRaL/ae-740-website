@@ -1,8 +1,8 @@
 ---
 layout: default
 title: "Installing ROS"
-parent: "Lab 2"
-grand_parent: Labs
+parent: 
+grand_parent: 
 nav_order: 1
 has_toc: true
 ---
