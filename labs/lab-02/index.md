@@ -3,6 +3,7 @@ layout: default
 title: "Lab 2"
 parent: 
 nav_order: 2
+published: false
 ---
 
 # Lab 2

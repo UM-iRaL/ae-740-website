@@ -5,6 +5,7 @@ parent:
 grand_parent: 
 nav_order: 3
 has_toc: true
+published: false
 ---
 
 # Exercises
