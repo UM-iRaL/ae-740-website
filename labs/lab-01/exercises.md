@@ -62,7 +62,7 @@ In this exercise you are required to set a git repository, for example inside yo
 
 ### Python: RandomVector (40 pts)
 
-In this exercise, you will implement a Python class called `RandomVector`. In the `ae_740_personal` directory, create a Python virtual environment `ae740_venv`, that we will use throughout the course. Inside `~/ae740_personal/lab1`, create a folder called `RandomVector` and clone the contents from [https://github.com/UM-iRaL/ae740_labs/tree/main/lab1.git](https://github.com/UM-iRaL/ae740_labs/tree/main/lab1.git). This contains two files -- 
+In this exercise, you will implement a Python class called `RandomVector`. In the `ae_740_personal` directory, create a Python virtual environment `ae740_venv`, that we will use throughout the course. Inside `~/ae740_personal/lab1`, create a folder called `RandomVector` and clone the contents from [https://github.com/UM-iRaL/ae740_labs/tree/main/lab1](https://github.com/UM-iRaL/ae740_labs/tree/main/lab1). This contains two files -- 
 - `random_vector.py`: Class definition.
 - `main.py`: Main Python file, that imports the `RandomVector` class.
 
