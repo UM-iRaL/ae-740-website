@@ -56,7 +56,7 @@ $ ls -l
 total 1112
 -rw-r--r--  1 username  staff  557042 Aug 24 21:57 dante.txt
 -rwxr-xr-x  1 username  staff      40 Aug 23 18:36 hello.sh
--rw-r--r--  1 username  staff     171 Aug 23 18:28 hello_vnav2020.tar.gz
+-rw-r--r--  1 username  staff     171 Aug 23 18:28 hello_ae740_f25.tar.gz
 -rw-r--r--  1 username  staff      49 Aug 24 22:55 numbers.txt
 ```
 The permissions are specified by the 1st field, the ownership is specified by the 3rd and 4th fields. Fo example, the file `hello.sh` is owned by me (`username`) and the group is `staff`. THe permission string is `-rwxr-xr-x` meaning that:
@@ -172,10 +172,10 @@ In this section we will download a compressed file, extract the content, inspect
 
 ### Download
 
-Imagine you have to download `http://www.umich.edu/~username/hello_ae740_f25.tar.gz` you can use `wget`.
+Imagine you have to download `https://um-iral.github.io/ae-740-website/hello_ae740_f25.tar.gz` you can use `wget`.
 
 ```bash
-wget http://www.umich.edu/~username/hello_ae740_f25.tar.gz
+wget https://um-iral.github.io/ae-740-website/hello_ae740_f25.tar.gz
 ```
 
 ### Uncompress
@@ -183,7 +183,7 @@ wget http://www.umich.edu/~username/hello_ae740_f25.tar.gz
 As you see it is a compressed file, to uncompress it we can use `tar`
 
 ```bash
-tar -xvf hello_ae740_f25.tar.gz
+tar -xvf ae740_f25.tar.gz
 ```
 
 The flags `xvf` are respectively extract, verbose file.
