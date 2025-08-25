@@ -53,19 +53,19 @@ The following exercises are designed to help you to experiment and learn how the
 
 ```bash
 git config --global user.name YOUR_NAME
-git config --global user.email YOUR_MIT_EMAIL_ADDRESS
+git config --global user.email YOUR_UMICH_EMAIL_ADDRESS
 ```
 
 
 3. [Generate](https://help.github.com/enterprise/2.18/user/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent){:target="_blank"} SSH keys (do not forget the passphrase if you choose to set one)
-4. [Add](https://help.github.com/enterprise/2.18/user/articles/adding-a-new-ssh-key-to-your-github-account/){:target="_blank"} SSH keys to your [github.mit.edu account](https://github.mit.edu/settings/keys){:target="_blank"}
-5. [Create a new repository](https://help.github.com/en/enterprise/2.18/user/articles/create-a-repo){:target="_blank"} on [https://github.mit.edu](https://github.mit.edu){:target="_blank"}
-6. Open a terminal and create a new directory using `mkdir` named `vnav19` in your HOME directory
+4. [Add](https://help.github.com/enterprise/2.18/user/articles/adding-a-new-ssh-key-to-your-github-account/){:target="_blank"} SSH keys to your [github.umich.edu account](https://github.umich.edu/settings/keys){:target="_blank"}
+5. [Create a new repository](https://help.github.com/en/enterprise/2.18/user/articles/create-a-repo){:target="_blank"} on [https://github.umich.edu](https://github.mit.edu){:target="_blank"}
+6. Open a terminal and create a new directory using `mkdir` named `ae740_personal` in your HOME directory
 7. Clone your (empty) Git repo (earn street cred by calling by using "repo" instead of "repository")
 
 
 ```bash
-git clone git@github.mit.edu:USERNAME/REPO.git
+git clone https://github.com/USERNAME/REPO.git
 ```
 
 
@@ -75,11 +75,11 @@ git clone git@github.mit.edu:USERNAME/REPO.git
 Now we simulate a common situation that arises when two or more people use the same repo.
 
 
-1. Navigate to your repo and create new `me.txt` with **your name and MIT email**, e.g.
+1. Navigate to your repo and create new `me.txt` with **your name and UMich email**, e.g.
 ```bash
 $ cat me.txt
 Jon Snow
-lordsnow@mit.edu
+lordsnow@umich.edu
 ```
 2. Check the status with `git status`
 3. Add (stage), check the status, commit and push your changes – commit message can be "Added my email"
@@ -104,7 +104,7 @@ git checkout -b new_branch_to_merge_later
 ```bash
 $ cat me.txt
 Arya Stark
-astark@mit.edy
+astark@umich.edu
 ```
 3. Add (stage), check the status, and commit your changes (you can push too if you want) – commit message can be “Somebody added another email”
 4. Now switch branch to master with `git checkout master`
@@ -114,7 +114,7 @@ astark@mit.edy
 $ echo "Course 16" >> me.txt
 $ cat me.txt
 Jon Snow
-lordsnow@mit.edu
+lordsnow@umich.edu
 Course 16
 ```
 6. Add (stage), check the status, and commit your changes – commit message can be “Added my course number”
@@ -136,11 +136,11 @@ Let's resolve the conflict
 $ cat me.txt
 <<<<<<< HEAD
 Jon Snow
-lordsnow@mit.edu
+lordsnow@umich.edu
 Course 16
 =======
 Arya Stark
-astark@mit.edu
+astark@umich.edu
 >>>>>>> new_branch_to_merge_later
 ```
 2.  In this case, we would like to have Jon name so we simply remove everything else (including `<<<<<<< HEAD`) from the file

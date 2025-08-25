@@ -8,7 +8,7 @@ has_children: true
 
 # Lab 1
 
-In this lab we will install Ubuntu 22.04, learns the shell basics and write our first C++ programs.
+In this lab we will install Ubuntu 22.04, learns the shell basics and write our first Python programs.
 
 <!-- ## Table of contents
 
