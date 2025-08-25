@@ -24,7 +24,7 @@ Everytime we work with the shell we are within one folder, to know where we are 
 
 ```bash
 $ pwd
-/home/username/vnav2020/lab1
+/home/username/ae740_personal/lab1
 ```
 
 where `username` is the login username you set.
@@ -35,9 +35,8 @@ To list the contents of the current directory (files and/or child directories, e
 
 ```bash
 $ ls
-ex0.cpp   ex1.cpp   ex2.cpp   final.cpp
+main.py   random_vector.py
 ```
-
 #### File permissions and ownership
 
 The concept of permissions and ownership is crucial in anu unix system. Every to file and directory is assigned 3 types of **owner**:
@@ -173,10 +172,10 @@ In this section we will download a compressed file, extract the content, inspect
 
 ### Download
 
-Imagine you have to download (you have to, actually) `http://www.mit.edu/~username/hello_vnav19.tar.gz` you can use `wget`.
+Imagine you have to download `http://www.umich.edu/~username/hello_ae740_f25.tar.gz` you can use `wget`.
 
 ```bash
-wget http://www.mit.edu/~username/hello_vnav19.tar.gz
+wget http://www.umich.edu/~username/hello_ae740_f25.tar.gz
 ```
 
 ### Uncompress
@@ -184,7 +183,7 @@ wget http://www.mit.edu/~username/hello_vnav19.tar.gz
 As you see it is a compressed file, to uncompress it we can use `tar`
 
 ```bash
-tar -xvf hello_vnav2020.tar.gz
+tar -xvf hello_ae740_f25.tar.gz
 ```
 
 The flags `xvf` are respectively extract, verbose file.
@@ -192,7 +191,7 @@ Now we would like to run the script. We should first inspect the file (never run
 
 ```bash
 $ cat hello.sh
-#!/usr/bin/env bash
+#!/bin/bash
 echo "Hello world!"
 ```
 
@@ -204,7 +203,7 @@ Before running the script we should verify that we can actually run the script s
 
 ```bash
 $ ls -l hello.sh
--rw-r--r--  1 username  staff  40 Aug 23 18:36 hello.sh
+-rw-r--r--  1 username  staff  40 Aug 27 18:36 hello.sh
 ```
 
 Ops! This time we have no right to run the script, we have to add it:

@@ -13,7 +13,7 @@ has_toc: true
 
 ## Submission
 
-To submit your solution, you will be creating a .zip file following the exercises below and upload it on Canvas under Assignment > Lab 1: Linux, Git, Python  by **September 1 at midnight (11:59 EST)**.
+To submit your solution, you will be creating a .zip file following the exercises below and upload it on Canvas under Assignment > Lab 1: Linux, Git, Python  by **September 5 at midnight (11:59 EST)**.
 
 {: .warning-title } 
 > Late Submission
