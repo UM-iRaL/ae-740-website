@@ -3,6 +3,8 @@ description: "AEROSP740 -- Fall 2025"
 # Remote theme pin to a tag for stability; bump later when you want.
 remote_theme: just-the-docs/just-the-docs@v0.8.0
 
+math: mathjax
+
 # just-the-docs options
 # logo: /assets/img/cover_image.jpg
 search_enabled: true

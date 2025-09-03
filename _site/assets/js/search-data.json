@@ -1,288 +1,407 @@
 {"0": {
     "doc": "Exercises",
     "title": "Exercises",
-    "content": " ",
-    "url": "/labs/lab-01/exercises/",
+    "content": ". | Submission . | Find a team | . | Setup workspace . | Create the ROS2 workspace | Getting the Lab code | Ensure up-to-date lab code | Building the code | A two-drone scenario . | The static scenario and rViz | . | . | Problem formulation . | Positions | Orientations | . | Basic ROS commands . | 📨 Deliverable 1 - Nodes, topics, launch files (10 pts) | . | Let’s make things move! Publishing the transforms using tf . | 📨 Deliverable 2 - Publishing transforms (30 pts) . | How to test | What to expect | . | Changing the rViz fixed reference frame. | 📨 Deliverable 3 - Looking up a transform (30 pts) . | What to expect | . | . | Let’s do some math . | 📨 Deliverable 4 - Mathematical derivations (25 pts) | 📨 Deliverable 5 - More properties of quaternions (5 pts) | 📨 [Optional] Deliverable 6 - Intrinsic vs Extrinsic rotations (20 pts) | . | . ",
+    "url": "/ae-740-website/labs/lab-02/exercises/",
     
-    "relUrl": "/labs/lab-01/exercises/"
+    "relUrl": "/labs/lab-02/exercises/"
   },"1": {
     "doc": "Exercises",
     "title": "Submission",
-    "content": "To submit your solution, you will be creating a .zip file following the exercises below and upload it on Canvas under Assignment &gt; Lab 1: Linux, Git, Python by September 1 at midnight (11:59 EST). Late Submission . Please email us if you want to submit later than the deadline. Otherwise late penalty will be applied. ",
-    "url": "/labs/lab-01/exercises/#submission",
+    "content": "To submit your solutions create a folder called lab2 and push one or more file to your repository with your answers (it can be plain text, markdown, pdf or whatever other format is reasonably easy to read) . | for math-related deliverables, LaTeX is preferred but handwritten is accepted too | for code-based deliverables, push the source code of the entire package | . Deadline: To submit your solution, you will be creating a .zip file containing all of your solutions and upload it on Canvas under Assignment &gt; Lab 2: ROS2, \\tf, and Homogeneous Transforms by Friday, September 12, 11:59 EST. Find a team . Next lab will have a team section, you should start thinking about your team! Each team consists of 2-3 students. Find a team . Please find your team members, fill out this spreadsheet . Please fill it before Friday, September 19th. ",
+    "url": "/ae-740-website/labs/lab-02/exercises/#submission",
     
-    "relUrl": "/labs/lab-01/exercises/#submission"
+    "relUrl": "/labs/lab-02/exercises/#submission"
   },"2": {
     "doc": "Exercises",
-    "title": "Exercises",
-    "content": "Git (5 pts) . In this exercise you are required to set a git repository, for example inside your own Github namespace. You will be downloading the zip file of this repository and submit it to Canvas. | Create a repository for your personal submissions . | Go to https://github.umich.edu/YOUR_USERNAME and click on “New Project” to create a new repository (replace YOUR_USERNAME with your Github namespace) | Create a new Private repository and call it as your UMich username, e.g. if your Umich email is astark@umich.edu, call it astark | Clone the repository to ~/ae740_personal (you will have a team submission later) running git clone https://github.com/YOUR_USERNAME/YOUR_UNIQUENAME.git ~/ae740_personal (replace YOUR_UNIQUENAME with your uniquename) | Create a folder called lab1 | . | Clone https://github.com/UM-iRaL/AE740-F25.git in a folder of your choice | . Shell (35 pts) . | Exercise 1 - Answer to the following questions . | Download https://raw.githubusercontent.com/dlang/dmd/master/druntime/benchmark/extra-files/dante.txt (try using wget) | Create a file called exercise1.txt in ~/ae740_personal/lab1 and answer to the following questions . | How many lines does it contains? | How many words does it contains? | How many lines are not blank? | . | Push the file to git | . | Exercise 2 - Output redirecting . | Install fortune-mod using apt | After installation, type fortune in your terminal to see a (hopefully) interesting proverb/quote | Run fortune 5 more times and each time redirect the output to a file called fortunes.txt in ~/ae740_personal/lab1 (Hint: do not recreate the file 5 times - each time a new proverb should be added to the end of fortunes.txt) | Push the file to git | . | . Hint: For the first exercise you might want to use the command wc (Word Count). Python: RandomVector (40 pts) . In this exercise, you will implement a Python class called RandomVector. In the ae_740_personal directory, create a Python virtual environment ae740_venv, that we will use throughout the course. Inside ~/ae740_personal/lab1, create a folder called RandomVector and clone the contents from https://github.com/UM-iRaL/AE740-F25/tree/main/ae740_labs/lab1.git. This contains two files – . | random_vector.py: Class definition. | main.py: Main Python file, that imports the RandomVector class. | . The class RandomVector will handle a list of random floating-point numbers. You are required to implement the following methods inside random_vector.py: . | __init__(self, size, max_val=1.0) (constructor): Initialize a list of size size with random values between 0 and max_val (default value 1.0) | mean(self): Returns the mean of the values in the random vector | max(self): Returns the maximum value in the random vector | min(self): Returns the minimum value in the random vector | print(self): Prints all the values in the random vector | print_histogram(self, bins): Computes the histogram of the values using bins number of bins between min() and max() and prints the histogram (see the example below) | . When you’re done, create another file called main.py to test your implementation. Note: We expect you to not use built-in functions like min(), max(), sum() or libraries like NumPy or Pandas for your implementation. Write the algorithms yourself. If you complete the exercise correctly, when you run python main.py you should see output similar to: . $ python main.py 0.458724 0.779985 0.212415 0.066795 0.622538 0.999018 0.489585 0.460587 0.079561 0.185496 0.629162 0.328032 0.242169 0.139671 0.453804 0.083038 0.619352 0.454482 0.477426 0.090497 Mean: 0.393617 Min: 0.066795 Max: 0.999018 Histogram: *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** . ",
-    "url": "/labs/lab-01/exercises/",
+    "title": "Setup workspace",
+    "content": "Create the ROS2 workspace . To get started, we must create a ROS2 workspace for the AE740 class. Choose your favorite working directory, we will assume you are creating one in your home directory (i.e ~/). In a terminal, run: . $ mkdir -p ~/ae740_ws/src $ cd ~/ae740_ws/ $ colcon build Starting &gt;&gt;&gt; two_drones_pkg Finished &lt;&lt;&lt; two_drones_pkg [0.32s] Summary: 1 package finished [0.45s] . Getting the Lab code . Go the folder where you cloned the Labs codebase and run git pull. This command will update the folder with the latest code. Let’s suppose we have the codebase in ~/ae740_labs. In ~/labs/lab2 you now have the two_drones_pkg folder, which is a ROS2 package. Copy this folder in your AE740 workspace and build the workspace as follows: . cp -r ~/ae740_labs/lab2/two_drones_pkg ~/ae740_ws/src . Assuming you have cloned the AE740 labs repository to ~/ae740_labs, this will create a symlink between the files in the AE740 labs repository and files in the ROS2 workspace. You can edit the files in ~/ae740_ws/src/two_drones_pkg, and the changes will be reflected in ~/ae740_labs/lab2/two_drones_pkg. Ensure up-to-date lab code . Go the folder where you cloned the Labs codebase and run git pull. This command will update the folder with the latest code. Let’s suppose we have the codebase in ~/ae740_labs. In ~/ae740_labs/lab2 you now have the two_drones_pkg folder, which is a ROS2 package. Building the code . Building the code is as easy as running: . colcon build --symlink-install . Now that you built the code you see that colcon added a bunch of new folders. In order to use our workspace, we need to make ROS2 aware of all the components by sourcing the corresponding environment. This is done by running the following in every single terminal where you intend to use the workspace: . source install/setup.bash . For the rest of the assignment, we assume that you are performing this operation whenever necessary. A two-drone scenario . In this part, we are going to work with 3D Rigid Transformations and with tf, a basic tool provided by ROS to keep track of multiple coordinate frames over time. The static scenario and rViz . To get started, let’s go back to the VNAV workspace and bring up the two-drones static scenario. In this environment, we have two aerial vehicles, AV1 [blue] and AV2 [red] that are not moving, but it serves as a good starting point! With the VNAV workspace sourced in a terminal, run: . ros2 launch two_drones_pkg two_drones.launch static:=True . You should see the following window, which shows the initial positions of the two AVs. This window is rViz, the mighty ROS visualizer! Just like most processes in the ROS ecosystem, rViz is a ROS node. Like all other nodes, rViz can subscribe to ROS topics. However, its specialty is converting them into graphics on your screen to display the state of your robotic system. As a first experience with rViz, let us: . | Add the visualization of \\tf. In the Displays panel, click Add, select the By display type Tab in the pop-up and finally select “TF” and confirm with Ok. You should see all the reference frames, with names and their axes represented in red (x), green (y) and blue (z). | Save the configuration file. So that we don’t have to repeat the step above every time we launch it! Hit CTRL + s or select File &gt; Save Config. | . Other published topics can be added to the visualizer in a similar way. ",
+    "url": "/ae-740-website/labs/lab-02/exercises/#setup-workspace",
     
-    "relUrl": "/labs/lab-01/exercises/"
+    "relUrl": "/labs/lab-02/exercises/#setup-workspace"
   },"3": {
+    "doc": "Exercises",
+    "title": "Problem formulation",
+    "content": "We consider the scenario illustrated in the picture below, where two aerial vehicles, AV1 [blue] and AV2 [red] are following different trajectories: a circle and an arc of parabola, respectively. In the scene, we have highlighted the following elements: . | The world frame $(x_w, y_w, z_w)$ | The AV1 body frame, centered in $O_1$ with axes $(x_1,y_1,z_1)$ | The origin of AV2, denoted with $O_2$ | . Positions . In the world frame, AV1 and AV2’s origins are given by: . | $o_1^w = [\\text{cos}(t), \\text{sin}(t), 0]^T$, and | $o_2^w = [\\text{sin}(t), 0, \\text{cos}(2t)]^T$, | . where $t$ denotes time. Orientations . We will make the following simplifying assumptions: . | AV1’s reference frame is such that $y_1$ stays tangent to AV1’s trajectory for all $t$ and $z_1$ is parallel to $z_w$ for all $t$ (i.e., equivalently, roll = pitch = 0, yaw = $t$) | AV2’s reference frame moves with pure translation and we can assume that its axes are parallel to the world axes for all times $t$ | . Notes . | Given the dynamics of a quadrotor, these motions are dynamically infeasible. However, for the purpose of this lab, we disregard this fact and focus on the study of rigid transformations | To make the math of this problem more interesting, we chose the $y_1$ axis to point in the direction of motion of the drone. However, do not forget that the standard convention is that $x_1$ should point forward! | . In the sequel, we reproduce the above scenario in ROS and study the trajectory of AV2 relative to AV1’s coordinate frame. ",
+    "url": "/ae-740-website/labs/lab-02/exercises/#problem-formulation",
+    
+    "relUrl": "/labs/lab-02/exercises/#problem-formulation"
+  },"4": {
+    "doc": "Exercises",
+    "title": "Basic ROS commands",
+    "content": "📨 Deliverable 1 - Nodes, topics, launch files (10 pts) . With the ros2 launch command above, we have spawned several ROS 2 nodes at the same time. Using your knowledge of ROS 2, answer the following questions: . | List the nodes running in the two-drone static scenario. | Hint: You can inspect the launch file or use rqt_graph to visualize the node graph. Ignore /rosout and /rqt_gui_py_* nodes/topics. | . | How could you run the two-drone static scenario without using the ros2 launch command? List the commands you would have to execute, in separate terminals, to achieve the same result. | Hint: Use ros2 run [...] for each node. Try running the nodes manually before finalizing your answer! | . | List the topics that each node publishes/subscribes to. Which nodes are responsible for publishing the av1, av2, and frames? Which topic causes rViz to plot the drone meshes? . | Hint: In rViz, uncheck items in the left pane until the meshes disappear, then check which node is publishing the corresponding topic. | . | What changes if we omit static:=True? Why? . | Hint: Review the if and unless conditions in the launch file and explain their effect. | . | . ",
+    "url": "/ae-740-website/labs/lab-02/exercises/#basic-ros-commands",
+    
+    "relUrl": "/labs/lab-02/exercises/#basic-ros-commands"
+  },"5": {
+    "doc": "Exercises",
+    "title": "Let’s make things move! Publishing the transforms using tf",
+    "content": "After exploring the static scenario, it’s time to implement the motions described in the problem formulation section and visualize them in rViz. With the editor of your choice, open frames_publisher_node.py in the two_drones_pkg folder of the package. In this file, we provide a basic structure of a ROS node. 📨 Deliverable 2 - Publishing transforms (30 pts) . In frames_publisher_node.py, follow the instructions in the comments and fill in the missing code. Your objective is to populate the provided world_T_av1 and world_T_av2 variables to match the motions described in the problem formulation. These objects are instances of the geometry_msgs.msg.TransformStamped class, which is ROS2 message type representing a homogeneous transformation matrix (at a specific instance in time). Keep in mind. Ensure that the orientation of the AV1 frame is in accordance with the assumptions made in the problem formulation, as this is of crucial importance for the final result! . How to test . Once you are ready to compile your code, run: . colcon build . from the workspace folder ~/ae740_ws. To try out your code, launch the two-drone scenario in non-static mode, i.e. run: . ros2 launch two_drones_pkg two_drones.launch.yaml . What to expect . You should finally see the drones moving! Check that the trajectories reflect those illustrated in the figure in the problem formulation. Changing the rViz fixed reference frame. As mentioned, we are interested in the motion of AV2 relative to AV1’s reference frame. In the Displays panel (left, by default), under the Global Options section, rViz offers the possibility to change the Fixed Frame to any frame published in tf. Try it out yourself and change “world” into “av1” by typing in the corresponding field. From this perspective, AV1 appears static, the world frame spins around its $z$ axis and AV2 seems to be following a closed-curve trajectory. 📨 Deliverable 3 - Looking up a transform (30 pts) . In plots_publisher_node.py, follow the instructions in the comments and fill in the missing code. Your objective is to populate the provided object, transform, with the relative transform between two given frames with names ref_frame and dest_frame, using ROS 2’s tf2 library. Compile your code and try it out as previously explained. What to expect . You should eventually see three trajectories, namely: . | AV1’s trajectory [blue, solid] in the world frame (circle on the x-y plane) | AV2’s trajectory [red, solid] in the world frame (parabola on the z-x plane) | The trajectory of AV2 in AV1’s frame [red, dashed]. You should now have a strong hunch that this curve is an ellipse on a “slanted” plane! | . Note: if the results you are observing do not seem to make sense, try swapping ref_frame and dest_frame when interrogating tf. ",
+    "url": "/ae-740-website/labs/lab-02/exercises/#lets-make-things-move-publishing-the-transforms-using-tf",
+    
+    "relUrl": "/labs/lab-02/exercises/#lets-make-things-move-publishing-the-transforms-using-tf"
+  },"6": {
+    "doc": "Exercises",
+    "title": "Let’s do some math",
+    "content": "So far, we have used ROS and tf to get a visual understanding of the motion of AV2 relative to AV1’s body frame. In this section, you are asked to use your knowledge about homogeneous transformations and study the relative trajectory explicitly. The visualization we have built should provide you with great guidance while working out the following questions. Since this exercise is designed for you to familiarize with the math of 3D transformations, we require that you explicitly write down all the homogeneous transformation matrices used in the process and precisely outline the logic and algebraic steps taken. 📨 Deliverable 4 - Mathematical derivations (25 pts) . | In the problem formulation, we mentioned that AV2’s trajectory is an arc of parabola in the $x$-$z$ plane of the world frame. Can you prove this statement? . | Hint: $cos(2t)$ can be written as… | . | Compute $o_2^1(t)$, i.e., the position of AV2 relative to AV1’s body frame as a function of $t$. | Hint: write down the homogeneous transformations and compose them accordingly… | . | Show that $o_2^1(t)$ describes a planar curve and find the equation of its plane $\\Pi$. | Hint: find a linear relation between $z_2^1$ and $y_2^1$ | . | Rewrite the above trajectory explicitly using a 2D frame of reference $(x_p, y_p)$ on the plane found before. Try to ensure that the curve is centered at the origin of this 2D frame and that $x_p$, $y_p$ are axes of symmetry for the curve. | Hints: | . |  i) center the new 2D frame in $p^1= (-1,-1/2,0)$, these coordinates are in AV1’s frame |  ii) start with a 3D reference frame centered in p with axes $(x_p, y_p, z_p)$, compute $o_2^p(t)$ |  iii) make sure that the $z$ component vanishes after the change of coordinates | . | Using the expression of $o_2^p(t)$, prove that the trajectory of AV2 relative to AV1 is an ellipse and compute the lengths of its semi-axes. | Hint: what is the general form of the equation of an axis-aligned ellipse centered in the origin? | . | . 📨 Deliverable 5 - More properties of quaternions (5 pts) . In the lecture notes, we have defined two linear maps $\\Omega_1: \\mathbb{R}^4 \\rightarrow \\mathbb{R}^{4\\times 4}$, and $\\Omega_2: \\mathbb{R}^4 \\rightarrow \\mathbb{R}^{4\\times 4}$, such that for any $q \\in \\mathbb{R}^4$, we have: . \\[\\Omega_1(q) = \\begin{bmatrix} q_4 &amp; -q_3 &amp; q_2 &amp; q_1 \\\\ q_3 &amp; q_4 &amp; -q_1 &amp; q_2 \\\\ -q_2 &amp; q_1 &amp; q_4 &amp; q_3 \\\\ -q_1 &amp; -q_2 &amp; -q_3 &amp; q_4 \\end{bmatrix}, \\qquad \\Omega_2(q) = \\begin{bmatrix} q_4 &amp; q_3 &amp; -q_2 &amp; q_1 \\\\ -q_3 &amp; q_4 &amp; q_1 &amp; q_2 \\\\ q_2 &amp; -q_1 &amp; q_4 &amp; q_3 \\\\ -q_1 &amp; -q_2 &amp; -q_3 &amp; q_4 \\end{bmatrix}.\\] The product between any two unit quaternions can then be explicitly computed as: \\[ q_a \\otimes q_b = \\Omega_1(q_a) q_b = \\Omega_2(q_b) q_a.\\] . In fact, the two linear maps $\\Omega_1$ and $\\Omega_2$ have more interesting properties, and you are asked to prove the following equalities: . | For any unit quaternion $q$, both $\\Omega_1(q)$ and $\\Omega_2(q)$ are orthogonal matrices, i.e., \\[ \\Omega_1(q)^T\\Omega_1(q) = \\Omega_1(q)\\Omega_1(q)^T = I_4, \\] \\[ \\Omega_2(q)^T\\Omega_2(q) = \\Omega_2(q)\\Omega_2(q)^T = I_4. \\] Intuitively, what is the reason that both $\\Omega_1(q)$ and $\\Omega_2(q)$ must be orthogonal? . | Hint: what does $q_a \\otimes q_b$ still being a unit quaternion imply? | . | For any unit quaternion $q$, both $\\Omega_1(q)$ and $\\Omega_2(q)$ convert $q$ to be the unit quaternion that corresponds to the 3D identity rotation, i.e., \\[ \\Omega_1(q)^Tq = \\Omega_2(q)^Tq = [0,0,0,1]^T. \\] . | For any two vectors $x,y \\in \\mathbb{R}^4$, show the two linear operators commute, i.e., \\[ \\Omega_1(x) \\Omega_2(y) = \\Omega_2(y) \\Omega_1(x), \\] \\[ \\Omega_1(x) \\Omega_2(y)^T = \\Omega_2(y)^T \\Omega_1(x). \\] | . 📨 [Optional] Deliverable 6 - Intrinsic vs Extrinsic rotations (20 pts) . Consider the following sequence of rotations: . | $R_0$: 90° around $x$ | $R_1$: 180° around $y$ | $R_2$ -30° around $x$ | . A) Extrinsic . The sequence of rotations is applied with respect to a fixed frame of reference (the world frame), as follows: . Note: the body axes are unlabeled, but represented in red ($x_b$), green ($y_b$), blue ($z_b$) . B) Intrinsic . The sequence of rotations is applied in reverse order with respect to a frame of reference attached to the object (the body frame), as follows: . Note that the final orientation of the object is the same in both cases! . This property is quite general: it holds regardless of the specific axes and angles of the rotations and for any number of rotations in the sequence. Could you prove this formally? . Hint: Prove that a rotation around a local axis (e.g., around x) is obtained by post-multiplying the given matrix (e.g., by $R_x$), while a rotation around the global axis is obtained by pre-multiplying. Then show the result easily follows from this fact. (It is acceptable that you prove the result for a single axis, e.g., $x$.) . ",
+    "url": "/ae-740-website/labs/lab-02/exercises/#lets-do-some-math",
+    
+    "relUrl": "/labs/lab-02/exercises/#lets-do-some-math"
+  },"7": {
     "doc": "Exercises",
     "title": "Exercises",
     "content": " ",
-    "url": "/labs/lab-02/exercises/",
+    "url": "/ae-740-website/labs/lab-01/exercises/",
     
-    "relUrl": "/labs/lab-02/exercises/"
-  },"4": {
+    "relUrl": "/labs/lab-01/exercises/"
+  },"8": {
+    "doc": "Exercises",
+    "title": "Submission",
+    "content": "To submit your solution, you will be creating a .zip file following the exercises below and upload it on Canvas under Assignment &gt; Lab 1: Linux, Git, Python by September 5 at midnight (11:59 EST). Late Submission . Please email us if you want to submit later than the deadline. Otherwise late penalty will be applied. ",
+    "url": "/ae-740-website/labs/lab-01/exercises/#submission",
+    
+    "relUrl": "/labs/lab-01/exercises/#submission"
+  },"9": {
+    "doc": "Exercises",
+    "title": "Exercises",
+    "content": "Git (5 pts) . In this exercise you are required to set a git repository, for example inside your own Github namespace. You will be downloading the zip file of this repository and submit it to Canvas. | Create a repository for your personal submissions . | Go to https://github.umich.edu/YOUR_USERNAME and click on “New Project” to create a new repository (replace YOUR_USERNAME with your Github namespace) | Create a new Private repository and call it as your UMich username, e.g. if your Umich email is astark@umich.edu, call it astark | Clone the repository to ~/ae740_personal (you will have a team submission later) running git clone https://github.com/YOUR_USERNAME/YOUR_UNIQUENAME.git ~/ae740_personal (replace YOUR_UNIQUENAME with your uniquename) | Create a folder called lab1 | . | . Shell (35 pts) . | Exercise 1 - Answer to the following questions . | Download https://raw.githubusercontent.com/dlang/dmd/master/druntime/benchmark/extra-files/dante.txt (try using wget) | Create a file called exercise1.txt in ~/ae740_personal/lab1 and answer to the following questions . | How many lines does it contains? | How many words does it contains? | How many lines are not blank? | . | Push the file to git | . | Exercise 2 - Output redirecting . | Install fortune-mod using apt | After installation, type fortune in your terminal to see a (hopefully) interesting proverb/quote | Run fortune 5 more times and each time redirect the output to a file called fortunes.txt in ~/ae740_personal/lab1 (Hint: do not recreate the file 5 times - each time a new proverb should be added to the end of fortunes.txt) | Push the file to git | . | . Hint: For the first exercise you might want to use the command wc (Word Count). Python: RandomVector (40 pts) . In this exercise, you will implement a Python class called RandomVector. In the ae740_personal directory, create a Python virtual environment ae740_venv, that we will use throughout the course. Inside ~/ae740_personal/lab1, create a folder called RandomVector and clone the contents from https://github.com/UM-iRaL/ae740_labs/tree/main/lab1. This contains two files – . | random_vector.py: Class definition. | main.py: Main Python file, that imports the RandomVector class. | . The class RandomVector will handle a list of random floating-point numbers. You are required to implement the following methods inside random_vector.py: . | __init__(self, size, max_val=1.0) (constructor): Initialize a list of size size with random values between 0 and max_val (default value 1.0) | mean(self): Returns the mean of the values in the random vector | max(self): Returns the maximum value in the random vector | min(self): Returns the minimum value in the random vector | print(self): Prints all the values in the random vector | print_histogram(self, bins): Computes the histogram of the values using bins number of bins between min() and max() and prints the histogram (see the example below) | . When you’re done, create another file called main.py to test your implementation. Note: We expect you to not use built-in functions like min(), max(), sum() or libraries like NumPy or Pandas for your implementation. Write the algorithms yourself. If you complete the exercise correctly, when you run python main.py you should see output similar to: . $ python main.py 0.458724 0.779985 0.212415 0.066795 0.622538 0.999018 0.489585 0.460587 0.079561 0.185496 0.629162 0.328032 0.242169 0.139671 0.453804 0.083038 0.619352 0.454482 0.477426 0.090497 Mean: 0.393617 Min: 0.066795 Max: 0.999018 Histogram: *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** . ",
+    "url": "/ae-740-website/labs/lab-01/exercises/",
+    
+    "relUrl": "/labs/lab-01/exercises/"
+  },"10": {
     "doc": "Git",
     "title": "Git",
     "content": " ",
-    "url": "/labs/lab-01/git/",
+    "url": "/ae-740-website/labs/lab-01/git/",
     
     "relUrl": "/labs/lab-01/git/"
-  },"5": {
+  },"11": {
     "doc": "Git",
     "title": "Table of contents",
     "content": ". | Intro | Getting started | Merge Conflict with an Imaginary Collaborator | . ",
-    "url": "/labs/lab-01/git/#table-of-contents",
+    "url": "/ae-740-website/labs/lab-01/git/#table-of-contents",
     
     "relUrl": "/labs/lab-01/git/#table-of-contents"
-  },"6": {
+  },"12": {
     "doc": "Git",
     "title": "Intro",
     "content": "The following are selected chapters from Pro Git, if you are new to Git please read carefully these chapters as they pose the foundation of git. | Getting Started | Getting a Git Repository | Recording Changes to the Repository | Viewing the Commit History | Undoing Things | Working with Remotes | Branches in a Nutshell | Basic Branching and Merging | Branch Management | Branching Workflows | Remote Branches | . Also visit Git command reference to get help with commands and command syntax. The following exercises are designed to help you to experiment and learn how these commands are used in practice. ",
-    "url": "/labs/lab-01/git/#intro",
+    "url": "/ae-740-website/labs/lab-01/git/#intro",
     
     "relUrl": "/labs/lab-01/git/#intro"
-  },"7": {
+  },"13": {
     "doc": "Git",
     "title": "Getting started",
-    "content": ". | Install Git with (requires internet connection). For this you need to update APT cache and then install the git-core package | Add your name/email to your Git configuration (system-wide) | . git config --global user.name YOUR_NAME git config --global user.email YOUR_MIT_EMAIL_ADDRESS . | Generate SSH keys (do not forget the passphrase if you choose to set one) | Add SSH keys to your github.mit.edu account | Create a new repository on https://github.mit.edu | Open a terminal and create a new directory using mkdir named vnav19 in your HOME directory | Clone your (empty) Git repo (earn street cred by calling by using “repo” instead of “repository”) | . git clone git@github.mit.edu:USERNAME/REPO.git . ",
-    "url": "/labs/lab-01/git/#getting-started",
+    "content": ". | Install Git with (requires internet connection). For this you need to update APT cache and then install the git-core package | Add your name/email to your Git configuration (system-wide) | . git config --global user.name YOUR_NAME git config --global user.email YOUR_UMICH_EMAIL_ADDRESS . | Generate SSH keys (do not forget the passphrase if you choose to set one) | Add SSH keys to your github.umich.edu account | Create a new repository on https://github.umich.edu | Open a terminal and create a new directory using mkdir named ae740_personal in your HOME directory | Clone your (empty) Git repo (earn street cred by calling by using “repo” instead of “repository”) | . git clone https://github.com/USERNAME/REPO.git . ",
+    "url": "/ae-740-website/labs/lab-01/git/#getting-started",
     
     "relUrl": "/labs/lab-01/git/#getting-started"
-  },"8": {
+  },"14": {
     "doc": "Git",
     "title": "Merge Conflict with an Imaginary Collaborator",
-    "content": "Now we simulate a common situation that arises when two or more people use the same repo. | Navigate to your repo and create new me.txt with your name and MIT email, e.g. $ cat me.txt Jon Snow lordsnow@mit.edu . | Check the status with git status | Add (stage), check the status, commit and push your changes – commit message can be “Added my email” add me.txt git status git commit -m \"Added my email\" git push . | Inspect the log with git log | . Now you can go to your repo’s page on Github and inspect the commit history and contents of your repo. Let’s continue editing the files . | Let’s create a new branch git checkout -b new_branch_to_merge_later . | Edit the file me.txt with completely different content, e.g. $ cat me.txt Arya Stark astark@mit.edy . | Add (stage), check the status, and commit your changes (you can push too if you want) – commit message can be “Somebody added another email” | Now switch branch to master with git checkout master | Inspect the output of git log --graph --oneline --all | Append your course number to the file $ echo \"Course 16\" &gt;&gt; me.txt $ cat me.txt Jon Snow lordsnow@mit.edu Course 16 . | Add (stage), check the status, and commit your changes – commit message can be “Added my course number” | Merge the two branches $ git merge new_branch_to_merge_later Auto-merging me.txt CONFLICT (content): Merge conflict in me.txt Automatic merge failed; fix conflicts and then commit the result. | . BOOM 💥. A conflict appears. Thanks, Git for letting us know about this! Let’s resolve the conflict . | Inspect the file me.txt, you should see something like - Git helps us by marking the conflict region with special characters: HEAD refers to your current branch/commit and below the ======= the other commit $ cat me.txt &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD Jon Snow lordsnow@mit.edu Course 16 ======= Arya Stark astark@mit.edu &gt;&gt;&gt;&gt;&gt;&gt;&gt; new_branch_to_merge_later . | In this case, we would like to have Jon name so we simply remove everything else (including &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD) from the file | After resolving the conflict, it is time to stage our file and create our merge commit - inspect the log, see the diff, and check the status git add me.txt git commit -m \"Merge commit\" git push . | Inspect the output of git log --graph --oneline --all | Inspect the output of git diff HEAD~2 - what does this command do? | . ",
-    "url": "/labs/lab-01/git/#merge-conflict-with-an-imaginary-collaborator",
+    "content": "Now we simulate a common situation that arises when two or more people use the same repo. | Navigate to your repo and create new me.txt with your name and UMich email, e.g. $ cat me.txt Jon Snow lordsnow@umich.edu . | Check the status with git status | Add (stage), check the status, commit and push your changes – commit message can be “Added my email” add me.txt git status git commit -m \"Added my email\" git push . | Inspect the log with git log | . Now you can go to your repo’s page on Github and inspect the commit history and contents of your repo. Let’s continue editing the files . | Let’s create a new branch git checkout -b new_branch_to_merge_later . | Edit the file me.txt with completely different content, e.g. $ cat me.txt Arya Stark astark@umich.edu . | Add (stage), check the status, and commit your changes (you can push too if you want) – commit message can be “Somebody added another email” | Now switch branch to master with git checkout master | Inspect the output of git log --graph --oneline --all | Append your course number to the file $ echo \"Course 16\" &gt;&gt; me.txt $ cat me.txt Jon Snow lordsnow@umich.edu Course 16 . | Add (stage), check the status, and commit your changes – commit message can be “Added my course number” | Merge the two branches $ git merge new_branch_to_merge_later Auto-merging me.txt CONFLICT (content): Merge conflict in me.txt Automatic merge failed; fix conflicts and then commit the result. | . BOOM 💥. A conflict appears. Thanks, Git for letting us know about this! Let’s resolve the conflict . | Inspect the file me.txt, you should see something like - Git helps us by marking the conflict region with special characters: HEAD refers to your current branch/commit and below the ======= the other commit $ cat me.txt &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD Jon Snow lordsnow@umich.edu Course 16 ======= Arya Stark astark@umich.edu &gt;&gt;&gt;&gt;&gt;&gt;&gt; new_branch_to_merge_later . | In this case, we would like to have Jon name so we simply remove everything else (including &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD) from the file | After resolving the conflict, it is time to stage our file and create our merge commit - inspect the log, see the diff, and check the status git add me.txt git commit -m \"Merge commit\" git push . | Inspect the output of git log --graph --oneline --all | Inspect the output of git diff HEAD~2 - what does this command do? | . ",
+    "url": "/ae-740-website/labs/lab-01/git/#merge-conflict-with-an-imaginary-collaborator",
     
     "relUrl": "/labs/lab-01/git/#merge-conflict-with-an-imaginary-collaborator"
-  },"9": {
-    "doc": "Home",
-    "title": "AEROSP 740: Online Learning for Control",
-    "content": "Fall 2025 – University of Michigan . This website will be used to publish course labs, handouts, and other materials. All important resources and updates for the course will be available here. | Start with Lectures | See Lab Handouts | . ",
-    "url": "/#aerosp-740-online-learning-for-control",
-    
-    "relUrl": "/#aerosp-740-online-learning-for-control"
-  },"10": {
-    "doc": "Home",
-    "title": "Home",
-    "content": " ",
-    "url": "/",
-    
-    "relUrl": "/"
-  },"11": {
-    "doc": "Lab 1",
-    "title": "Lab 1",
-    "content": "In this lab we will install Ubuntu 22.04, learns the shell basics and write our first C++ programs. ",
-    "url": "/labs/lab-01/",
-    
-    "relUrl": "/labs/lab-01/"
-  },"12": {
+  },"15": {
     "doc": "Lab 2",
     "title": "Lab 2",
-    "content": "In this lab we will install ROS, learn the basics of the Robot Operating System and complete related exercises. ",
-    "url": "/labs/lab-02/",
+    "content": "In this lab we will install ROS and will experiment with \\tf and Homogeneous Transformations. ",
+    "url": "/ae-740-website/labs/lab-02/",
     
     "relUrl": "/labs/lab-02/"
-  },"13": {
-    "doc": "Lab 2",
-    "title": "Table of contents",
-    "content": ". | Installing ROS | Introduction to ROS | Exercises | . ",
-    "url": "/labs/lab-02/#table-of-contents",
+  },"16": {
+    "doc": "Lab 1",
+    "title": "Lab 1",
+    "content": "In this lab we will install Ubuntu 22.04, learns the shell basics and write our first Python programs. ",
+    "url": "/ae-740-website/labs/lab-01/",
     
-    "relUrl": "/labs/lab-02/#table-of-contents"
-  },"14": {
+    "relUrl": "/labs/lab-01/"
+  },"17": {
     "doc": "Labs",
     "title": "Handouts for Labs",
     "content": " ",
-    "url": "/labs/#handouts-for-labs",
+    "url": "/ae-740-website/labs/#handouts-for-labs",
     
     "relUrl": "/labs/#handouts-for-labs"
-  },"15": {
+  },"18": {
     "doc": "Labs",
     "title": "Labs",
     "content": " ",
-    "url": "/labs/",
+    "url": "/ae-740-website/labs/",
     
     "relUrl": "/labs/"
-  },"16": {
+  },"19": {
     "doc": "Lectures",
     "title": "Lectures",
     "content": "Slides, reading, and notes here. ",
-    "url": "/lectures/",
+    "url": "/ae-740-website/lectures/",
     
     "relUrl": "/lectures/"
-  },"17": {
+  },"20": {
+    "doc": "Home",
+    "title": "AEROSP 740: Online Learning for Control",
+    "content": "Fall 2025 – University of Michigan . This website will be used to publish course labs, handouts, and other materials. All important resources and updates for the course will be available here. | Start with Lectures | See Lab Handouts | . ",
+    "url": "/ae-740-website/#aerosp-740-online-learning-for-control",
+    
+    "relUrl": "/#aerosp-740-online-learning-for-control"
+  },"21": {
+    "doc": "Home",
+    "title": "Home",
+    "content": " ",
+    "url": "/ae-740-website/",
+    
+    "relUrl": "/"
+  },"22": {
+    "doc": "Installing ROS",
+    "title": "Installing ROS",
+    "content": ". ",
+    "url": "/ae-740-website/labs/lab-02/install-ros/",
+    
+    "relUrl": "/labs/lab-02/install-ros/"
+  },"23": {
+    "doc": "Installing ROS",
+    "title": "Table of contents",
+    "content": ". | Getting started with ROS | Installing ROS . | Setup repositories | Installation | Environment setup | Validating the Installation | Dependencies for building packages | Initialization | . | . ",
+    "url": "/ae-740-website/labs/lab-02/install-ros/#table-of-contents",
+    
+    "relUrl": "/labs/lab-02/install-ros/#table-of-contents"
+  },"24": {
+    "doc": "Installing ROS",
+    "title": "Getting started with ROS",
+    "content": "The Robot Operating System (ROS) is a crucial middleware (a.k.a. collection of software packages) that enables roboticists all over the world to implement their algorithms in a clean and modular fashion and share their work effectively with the community. In addition, it is at the very core of our class, so we’d better start playing with it! . ",
+    "url": "/ae-740-website/labs/lab-02/install-ros/#getting-started-with-ros",
+    
+    "relUrl": "/labs/lab-02/install-ros/#getting-started-with-ros"
+  },"25": {
+    "doc": "Installing ROS",
+    "title": "Installing ROS",
+    "content": "We will be using ROS 2 “Humble” in this class. If you search for ROS-related content online, you will find references to ROS 1 and ROS 2. ROS 1 has recently reached its end-of-life, and you will want to make sure you are looking at the ROS 2 version of any documentation that you find. By now, you should have a working (preferably fresh) install of Ubuntu 22.04 and have become accustomed with the basics of Linux, Git and C++. The most efficient way to install ros is through the Debian (binary) packages. To install ROS 2 Humble on it, we will follow the official guide to install the Desktop Install option. Setup repositories . First we will enable the Ubuntu Universe repository . sudo apt install software-properties-common sudo add-apt-repository universe . Next we will setup the keys (install curl if you haven’t already via sudo apt install curl) . sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg . and then add the repository to the sources list . echo \"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release &amp;&amp; echo $UBUNTU_CODENAME) main\" | sudo tee /etc/apt/sources.list.d/ros2.list &gt; /dev/null . Installation . Before installing ROS we need to update the apt index . sudo apt update . We also need to make sure that all packages on the system are up to date. This step may take some time. sudo apt upgrade . Now let’s install ROS 🤖 . sudo apt install ros-humble-desktop '~nros-humble-rqt*' . Environment setup . It’s convenient if the ROS environment variables are automatically loaded as soon a new shell is launched, let’s edit ~/.bashrc to do so . echo \"source /opt/ros/humble/setup.bash\" &gt;&gt; ~/.bashrc source ~/.bashrc . Keep in mind. If you use a different shell (such as zsh), make sure you configure your shell to source the correct setup file! . By default, ROS 2 can connect to nodes on other computers on the same network. As we do not want this behavior, we will restrict ROS to only connect to nodes on the same computer: . echo \"export ROS_LOCALHOST_ONLY=1\" &gt;&gt; ~/.bashrc . Validating the Installation . We will now run some example code to make sure everything installed correctly. In one terminal, source the setup file and then run a C++ talker: . ros2 run demo_nodes_cpp talker . In another terminal, run . ros2 run demo_nodes_py listener . You should see the talker saying that it’s Publishing messages and the listener saying I heard those messages. This verifies both the C++ and Python APIs are working properly. Next run . printenv | grep -i ROS . and make sure ROS_DISTRO, ROS_VERSION, and ROS_PYTHON_VERSION are set: . ROS_VERSION=2 ROS_PYTHON_VERSION=3 ROS_DISTRO=humble . Dependencies for building packages . Up to now you have installed what you need to run the core ROS packages. To create and manage your own ROS workspaces, there are various tools and requirements that are distributed separately. For example, rosinstall is a frequently used command-line tool that enables you to easily download many source trees for ROS packages with one command. To install this tool and other dependencies for building ROS packages, run: . sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-vcstool build-essential python3-colcon-common-extensions . There are several quality of life improvements related to autocomplete that you may want to add add the end of your .bashrc . eval \"$(register-python-argcomplete3 ros2)\" # adds tab-completion for ros2 commands eval \"$(register-python-argcomplete3 colcon)\" # adds tab-completion for colcon commands source /usr/share/colcon_cd/function/colcon_cd.sh # enables colcon_cd package_name source /usr/share/colcon_cd/function/colcon_cd-argcomplete.bash export _colcon_cd_root=/opt/ros/humble/ # sets the colcon_cd root . Initialization . Before using ROS, we need to initialize rosdep. sudo rosdep init rosdep update . ",
+    "url": "/ae-740-website/labs/lab-02/install-ros/",
+    
+    "relUrl": "/labs/lab-02/install-ros/"
+  },"26": {
     "doc": "Install Ubuntu 22.04",
     "title": "Install Ubuntu 22.04",
     "content": "For this and the following labs, you need a (preferably clean) Ubuntu 22.04 LTS (Jammy Jellyfish) installation (see below). There are plenty of installation guides and tutorials on the web (and, in particular, on Youtube). ",
-    "url": "/labs/lab-01/install-ubuntu/",
+    "url": "/ae-740-website/labs/lab-01/install-ubuntu/",
     
     "relUrl": "/labs/lab-01/install-ubuntu/"
-  },"18": {
+  },"27": {
     "doc": "Install Ubuntu 22.04",
     "title": "Steps",
     "content": ". | Download the ISO image from ubuntu.com | Create a bootable USB stick . | How to create a bootable USB stick on Windows | How to create a bootable USB stick on Mac OS | How to create a bootable USB stick on Ubuntu | . | Boot from USB stick and install . | Install Ubuntu desktop (full erase) | Install Ubuntu alongside Windows (dual boot) | . | . Warning . Partitioning can be tricky if you are installing Linux for the first time. There are plenty of guides for “dual-boot Ubuntu installation” alongside both Windows and OS X. In most cases, you would first need to shrink one of your partitions (e.g., in Windows) and create an “unallocated space” which will be used during the Ubuntu installation process. Ask for help if you are unsure. ",
-    "url": "/labs/lab-01/install-ubuntu/#steps",
+    "url": "/ae-740-website/labs/lab-01/install-ubuntu/#steps",
     
     "relUrl": "/labs/lab-01/install-ubuntu/#steps"
-  },"19": {
+  },"28": {
     "doc": "Install Ubuntu 22.04",
     "title": "Ubuntu Setup",
     "content": "Once Linux is installed we need to update all the packages, to do so open a terminal (CTRL+Alt+T) and type . sudo apt update sudo apt upgrade sudo apt install build-essential cmake . ",
-    "url": "/labs/lab-01/install-ubuntu/#ubuntu-setup",
+    "url": "/ae-740-website/labs/lab-01/install-ubuntu/#ubuntu-setup",
     
     "relUrl": "/labs/lab-01/install-ubuntu/#ubuntu-setup"
-  },"20": {
-    "doc": "Installing ROS",
-    "title": "Installing ROS",
+  },"29": {
+    "doc": "Introduction to ROS",
+    "title": "ROS Intro",
     "content": " ",
-    "url": "/labs/lab-02/installing-ros/",
+    "url": "/ae-740-website/labs/lab-02/intro-to-ros/#ros-intro",
     
-    "relUrl": "/labs/lab-02/installing-ros/"
-  },"21": {
+    "relUrl": "/labs/lab-02/intro-to-ros/#ros-intro"
+  },"30": {
+    "doc": "Introduction to ROS",
+    "title": "Table of contents",
+    "content": ". | ROS Nodes and Topics . | ROS nodes | ROS topics | . | Anatomy of a ROS node . | Minimal Publisher Example | Minimal Subscriber Example | . | Launch files | Transforms (tf2_ros package) | Quick overview of tf tools . | Using rqt_tf_tree | Using tf2_echo | Using RViz | . | ROS file system structure . | General structure | The workspace | . | Additional resources | . ",
+    "url": "/ae-740-website/labs/lab-02/intro-to-ros/#table-of-contents",
+    
+    "relUrl": "/labs/lab-02/intro-to-ros/#table-of-contents"
+  },"31": {
+    "doc": "Introduction to ROS",
+    "title": "ROS Nodes and Topics",
+    "content": "One of the primary purposes of ROS is to facilitate communication between the ROS modules called nodes. Those nodes can be executed on a single machine or across several machines, obtaining a distributed system. The advantage of this structure is that each node can control one aspect of a system. For example you might have several nodes each be responsible of parsing row data from sensors and one node to process them. ROS nodes . Nodes are regular processes, but they run a discovery process under the hood that allows them to find and communicate with other nodes on the network. The ROS design idea is that each node is an independent module that interacts with other nodes using the ROS communication capability. We will start by getting comfortable with running precompiled ROS nodes. Later, we will start writing our own nodes from scratch. As example let’s run the turtlesim node. In a new terminal run . ros2 run turtlesim turtlesim_node . Yous should see something like . Now, you can see the running nodes with . $ ros2 node list /turtlesim . Now, let’s run another node to control the turtle: . ros2 run turtlesim turtle_teleop_key . You can use the arrow keys in this terminal to move the turtle around. Now the list of node changed: . $ ros2 node list /teleop_turtle /turtlesim . ROS topics . Topics are the means used by nodes to transmit data, it represents the channel where messages are sent and it has a message type attached to it (you cannot send different types of messages in a topic). In ROS, data production and consumption are decoupled, this means that a node can publish message (producer) or subscribe to a topic (consumer). Let’s use rqt_graph which shows the nodes and topics currently running. ros2 run rqt_graph rqt_graph . If you select Nodes/Topics (all) from the top left you will see something similar to . In the graph the ellipses are nodes and the squares are topics. From the picture it’s easy to see that teleop_turtle is publishing to /turtle1/cmd_vel topic. The node /turtlesim is subscribed to the topic and uses the incoming messages to move the turtle. You can also print the messages to the terminal. Try to run ros2 topic echo /turtle1/cmd_vel and move the turtle; you should get something like . $ ros2 topic echo /turtle1/cmd_vel linear: x: 0.0 y: 0.0 z: 0.0 angular: x: 0.0 y: 0.0 z: -2.0 --- . These are very useful tools to debug your nodes. ",
+    "url": "/ae-740-website/labs/lab-02/intro-to-ros/#ros-nodes-and-topics",
+    
+    "relUrl": "/labs/lab-02/intro-to-ros/#ros-nodes-and-topics"
+  },"32": {
+    "doc": "Introduction to ROS",
+    "title": "Anatomy of a ROS node",
+    "content": "Minimal Publisher Example . A simple Python ROS2 node that publishes messages has a structure similar to the following . import rclpy from rclpy.node import Node from std_msgs.msg import String class MinimalPublisher(Node): def __init__(self): super().__init__('minimal_publisher') self.publisher_ = self.create_publisher(String, 'topic', 10) timer_period = 0.5 # seconds self.timer = self.create_timer(timer_period, self.timer_callback) self.i = 0 def timer_callback(self): msg = String() msg.data = 'Hello World: %d' % self.i self.publisher_.publish(msg) self.get_logger().info('Publishing: \"%s\"' % msg.data) self.i += 1 def main(args=None): rclpy.init(args=args) minimal_publisher = MinimalPublisher() rclpy.spin(minimal_publisher) # Destroy the node explicitly minimal_publisher.destroy_node() rclpy.shutdown() if __name__ == '__main__': main() . Let’s analyze it section by section: . import rclpy from rclpy.node import Node from std_msgs.msg import String . adds the rclpy library containing all the basic ROS2 functionality. Next we define our minimal publisher class: . class MinimalPublisher(Node): def __init__(self): super().__init__('minimal_publisher') self.publisher_ = self.create_publisher(String, 'topic', 10) timer_period = 0.5 # seconds self.timer = self.create_timer(timer_period, self.timer_callback) self.i = 0 . Note that the class inherits from rclpy.node.Node. All of your nodes will need to inherit from this class to be able to publish or subscribe messages. The node is initialized with the node name minimal_publisher, and a publisher is instantiated with create_publisher which publishes String message type on a topic called topic. Next, we define the timer_callback function, which will periodically publish a “Hello World!” message. def timer_callback(self): msg = String() msg.data = 'Hello World: %d' % self.i self.publisher_.publish(msg) self.get_logger().info('Publishing: \"%s\"' % msg.data) self.i += 1 . create_timer defines a timer that calls the callback at the specified rate. Calling self.publisher_.publish(msg) sends the messages on the publisher’s topic. To actually publish messages, we need to instantiate the node and spin it: . def main(args=None): rclpy.init(args=args) minimal_publisher = MinimalPublisher() rclpy.spin(minimal_publisher) minimal_publisher.destroy_node() rclpy.shutdown() . rclpy.init needs to be called to initialize ROS2, rclpy.spin will keep the node running and processing callbacks, and rclpy.shutdown will ensure ROS2 is properly cleaned up at the end. Minimal Subscriber Example . Next we will take a look at example code for a minimal subscriber node, which receives messages from the above publisher node: . import rclpy from rclpy.node import Node from std_msgs.msg import String class MinimalSubscriber(Node): def __init__(self): super().__init__('minimal_subscriber') self.subscription = self.create_subscription( String, 'topic', self.listener_callback, 10) self.subscription # prevent unused variable warning def listener_callback(self, msg): self.get_logger().info('I heard: \"%s\"' % msg.data) def main(args=None): rclpy.init(args=args) minimal_subscriber = MinimalSubscriber() rclpy.spin(minimal_subscriber) minimal_subscriber.destroy_node() rclpy.shutdown() if __name__ == '__main__': main() . The structure is very similar, but there are a couple of differences that are worth highlighting. First, . self.subscription = self.create_subscription( String, 'topic', self.listener_callback, 10) . This creates a subscription to the topic called topic, with a queue size of 10 messages. The third argument specifies a callback function that should be run when a new messages is received on the topic. It is also worth pointing out . rclpy.spin(minimal_subscriber) . rclpy.spin will not return until the subscriber node exits or ROS2 is killed, letting the node process callbacks as long as ROS2 is running. ",
+    "url": "/ae-740-website/labs/lab-02/intro-to-ros/#anatomy-of-a-ros-node",
+    
+    "relUrl": "/labs/lab-02/intro-to-ros/#anatomy-of-a-ros-node"
+  },"33": {
+    "doc": "Introduction to ROS",
+    "title": "Launch files",
+    "content": "Launch files are the preferred way to run ROS nodes. The launch files provide a convenient interface to execute multiple nodes, as well as other initialization requirements such as parameters. Launch files can be written in Yaml, XML, or Python. We would suggest using YAML for this lab. Usually the launch files are located in the launch folder of the package. If the package provides one you can use ros2 launch to use it: . ros2 launch &lt;package_name&gt; &lt;launch_file&gt; . Note: Pushing CTRL+c in a terminal with a launch file running will close all nodes that were started with that launch file. An example of a YAML launch file is . launch: - node: pkg: minimal_test exec: publisher_node name: pub_node namespace: my_robot - node: pkg: minimal_test exec: subscriber_node name: sub_node remap: - from: \"topic\" to: \"/my_robot/topic\" . which will run two nodes. Here we introduce the concept of a namespace; in this case the publisher node’s name will be /my_robot/pub_node and all of the node’s topic names will have the form /my_robot/&lt;original topic name&gt;. We also introduce the ability to remap topics: the subscriber node listens on topic by default, and we have remapped it to listen on /my_robot/topic. ",
+    "url": "/ae-740-website/labs/lab-02/intro-to-ros/#launch-files",
+    
+    "relUrl": "/labs/lab-02/intro-to-ros/#launch-files"
+  },"34": {
+    "doc": "Introduction to ROS",
+    "title": "Transforms (tf2_ros package)",
+    "content": "The ROS tf2 library has been developed to provide a standard method to keep track of coordinate frames and transform data within the entire system so that users can be confident about the consistency of their data in a particular coordinate frame without requiring knowledge about all the other coordinate frames in the system and their associations. tf2 is distributed across nodes (across machines too, eventually) and there are two types of tf2 nodes . | Listener: that listen to /tf and cache all data that it collected (up to cache limit) | Broadcaster: that publish transforms between coordinate frames on /tf | . In tf2, transforms and coordinate frames are represented as a graph with the transforms as edges and the coordinate frames as nodes. The advantage of this representation is that the relative pose between two nodes is simply the product of the edges connecting the two nodes. A tree structure has also the benefit of allowing for dynamic changes easily. tf indeed takes care of ambiguity of transforms not allowing loops in the transforms graph. Where to learn TF. The best resource to learn TF out there is the official ROS tf2 tutorials. Take your time to familiarize with the Listener/Broadcaster code, you’ll need for the exercises. Of course do not forget the official documentation. ",
+    "url": "/ae-740-website/labs/lab-02/intro-to-ros/#transforms-tf2_ros-package",
+    
+    "relUrl": "/labs/lab-02/intro-to-ros/#transforms-tf2_ros-package"
+  },"35": {
+    "doc": "Introduction to ROS",
+    "title": "Quick overview of tf tools",
+    "content": "Let’s see the tools we have to explore the tf tree. ROS provides a simple demo we are going to use, from a terminal run . ros2 launch turtle_tf2_py turtle_tf2_demo.launch.py . and from a second terminal run . ros2 run turtlesim turtle_teleop_key . Once the turtlesim demo is started, we will drive the center turtle around in turtlesim using the keyboard arrow keys. We can observe that one turtle will continuously follow the turtle we are driving. In this demo application, the ROS TF library is used to create three coordinate frames: a world frame, a turtle1 frame, and a turtle2 frame, and to create a TF broadcaster to publish the coordinate frames of the first turtle and a TF listener to compute the difference between the first and follower turtle frames, as well as drive the second turtle to follow the first. Using rqt_tf_tree . The rqt_tf_tree tool enables the real-time visualization of the tree of frames being broadcast over ROS . ros2 run rqt_tf_tree rqt_tf_tree . Here, you can see that three frames are broadcast by TF—the world, turtle1, and turtle2, where the world frame is the parent of the turtle1 and turtle2 frames. Using tf2_echo . The tf2_echo tool reports the transformation between any two frames broadcast over ROS . ros2 run tf2_ros tf2_echo [reference_frame] [target_frame] . For example . $ ros2 run tf2_ros tf2_echo turtle2 turtle1 At time 1724205730.839441066 - Translation: [1.057, 0.031, 0.000] - Rotation: in Quaternion [0.000, 0.000, 0.070, 0.998] . Using RViz . RViz is a graphical 3D visualization tool that is useful for viewing the association between TF frames within the ROS system: . You can run RViz by running . rviz2 . One it is started, you need to press the button Add to add the TF in the visualization and set the correct Fixed Frame (i.e. world). ",
+    "url": "/ae-740-website/labs/lab-02/intro-to-ros/#quick-overview-of-tf-tools",
+    
+    "relUrl": "/labs/lab-02/intro-to-ros/#quick-overview-of-tf-tools"
+  },"36": {
+    "doc": "Introduction to ROS",
+    "title": "ROS file system structure",
+    "content": "General structure . Similar to an operating system, ROS files are also organized in a particular fashion. The following graph shows how ROS files and folder are organized on the disk: . The ROS packages are the most basic unit of the ROS software. They contain the ROS runtime process (nodes), libraries, configuration files, and so on, which are organized together as a single unit. Packages are the atomic build item and release item in the ROS software. Inside a package we can find the package manifest file, which contains information about the package, author, license, dependencies, compilation flags, and so on. The package.xml file inside the ROS package is the manifest file of that package. The ROS messages are a type of information that is sent from one ROS process to the other. They are regular text files with .msg extension that define the fields of the messages. The ROS service is a kind of request/reply interaction between processes. The reply and request data types can be defined inside the srv folder inside the package. For example, the package we will develop in this lab will be like . └── two_drones_pkg ├── package.xml ├── setup.py ├── resource │ └── two_drones_pkg ├── config │ └── default.rviz ├── launch │ └── two_drones.launch.yaml ├── mesh │ └── quadrotor.dae └── two_drones_pkg ├── __init__.py ├── frames_publisher_node.py └── plots_publisher_node.py . The workspace . In general terms, the workspace is a folder which contains packages, those packages contain our source files and the environment or workspace provides us with a way to compile those packages. It is useful when we want to compile various packages at the same time and it is a good way of centralizing all of our developments. ",
+    "url": "/ae-740-website/labs/lab-02/intro-to-ros/#ros-file-system-structure",
+    
+    "relUrl": "/labs/lab-02/intro-to-ros/#ros-file-system-structure"
+  },"37": {
+    "doc": "Introduction to ROS",
+    "title": "Additional resources",
+    "content": "Of course there are many details we haven’t discussed here. You can find much more detailed information in the Official ROS tutorial . ",
+    "url": "/ae-740-website/labs/lab-02/intro-to-ros/#additional-resources",
+    
+    "relUrl": "/labs/lab-02/intro-to-ros/#additional-resources"
+  },"38": {
     "doc": "Introduction to ROS",
     "title": "Introduction to ROS",
     "content": " ",
-    "url": "/labs/lab-02/introduction-to-ros/",
+    "url": "/ae-740-website/labs/lab-02/intro-to-ros/",
     
-    "relUrl": "/labs/lab-02/introduction-to-ros/"
-  },"22": {
+    "relUrl": "/labs/lab-02/intro-to-ros/"
+  },"39": {
     "doc": "Python",
     "title": "Python",
     "content": " ",
-    "url": "/labs/lab-01/python/",
+    "url": "/ae-740-website/labs/lab-01/python/",
     
     "relUrl": "/labs/lab-01/python/"
-  },"23": {
+  },"40": {
     "doc": "Python",
     "title": "Table of Contents",
     "content": ". | Python Virtual Environments (venv) . | Why Use Virtual Environments? | Creating and Using Virtual Environments | Managing Packages in Virtual Environment | Example requirements.txt | Deactivating and Removing Environments | . | Python Basics . | Variables and Data Types | Control Flow | Functions | . | NumPy Tutorial . | Installation and Import | Creating Arrays | Array Properties | Array Operations | Matrix Operations | Array Indexing and Slicing | Reshaping and Concatenation | Statistical Operations | Practical Example: Linear Algebra | Working with Random Numbers | . | . ",
-    "url": "/labs/lab-01/python/#table-of-contents",
+    "url": "/ae-740-website/labs/lab-01/python/#table-of-contents",
     
     "relUrl": "/labs/lab-01/python/#table-of-contents"
-  },"24": {
+  },"41": {
     "doc": "Python",
     "title": "Python Virtual Environments (venv)",
     "content": "Virtual environments are isolated Python environments that allow you to install packages for specific projects without affecting your system Python installation. Why Use Virtual Environments? . | Isolation: Keep project dependencies separate | Version control: Use different versions of packages for different projects | Clean system: Avoid cluttering your system Python installation | Reproducibility: Share exact package versions with others | . Creating and Using Virtual Environments . # Create a new virtual environment python3 -m venv ae740_venv # Activate the virtual environment source ae740_venv/bin/activate # Your prompt should change to show the environment name (ae740_venv) user@computer:~$ . Managing Packages in Virtual Environment . # Install packages (only affects current environment) pip install numpy pip install matplotlib scipy pandas # Install specific versions pip install numpy==1.21.0 # Install from requirements file pip install -r requirements.txt # List installed packages pip list # Create requirements file pip freeze &gt; requirements.txt . Example requirements.txt . numpy==1.24.3 matplotlib==3.7.1 scipy==1.10.1 pandas==2.0.2 jupyter==1.0.0 . Deactivating and Removing Environments . # Deactivate current environment deactivate # Remove virtual environment (just delete the folder) rm -rf ae740_venv . ",
-    "url": "/labs/lab-01/python/#python-virtual-environments-venv",
+    "url": "/ae-740-website/labs/lab-01/python/#python-virtual-environments-venv",
     
     "relUrl": "/labs/lab-01/python/#python-virtual-environments-venv"
-  },"25": {
+  },"42": {
     "doc": "Python",
     "title": "Python Basics",
     "content": "Variables and Data Types . # Numbers integer_num = 42 float_num = 3.14 complex_num = 2 + 3j # Strings text = \"Hello, Python!\" multiline = \"\"\"This is a multiline string\"\"\" # Booleans is_true = True is_false = False # Lists numbers = [1, 2, 3, 4, 5] mixed_list = [1, \"hello\", 3.14, True] # Dictionaries person = {\"name\": \"Alice\", \"age\": 30, \"city\": \"Ann Arbor\"} . Control Flow . # If statements x = 10 if x &gt; 5: print(\"x is greater than 5\") elif x == 5: print(\"x equals 5\") else: print(\"x is less than 5\") # For loops for i in range(5): print(f\"Iteration {i}\") # While loops count = 0 while count &lt; 3: print(f\"Count: {count}\") count += 1 # List comprehensions squares = [x**2 for x in range(10)] even_squares = [x**2 for x in range(10) if x % 2 == 0] . Functions . def greet(name, age=None): \"\"\"Function to greet a person.\"\"\" if age: return f\"Hello {name}, you are {age} years old!\" else: return f\"Hello {name}!\" # Function call message = greet(\"Alice\", 25) print(message) # Lambda functions square = lambda x: x**2 print(square(5)) # Output: 25 . ",
-    "url": "/labs/lab-01/python/#python-basics",
+    "url": "/ae-740-website/labs/lab-01/python/#python-basics",
     
     "relUrl": "/labs/lab-01/python/#python-basics"
-  },"26": {
+  },"43": {
     "doc": "Python",
     "title": "NumPy Tutorial",
     "content": "Installation and Import . # Install NumPy (run in terminal) # pip install numpy import numpy as np . Creating Arrays . # From lists arr1 = np.array([1, 2, 3, 4, 5]) arr2d = np.array([[1, 2, 3], [4, 5, 6]]) # Built-in functions zeros = np.zeros((3, 3)) ones = np.ones((2, 4)) eye = np.eye(3) # Identity matrix range_arr = np.arange(0, 10, 2) # [0, 2, 4, 6, 8] linspace = np.linspace(0, 1, 5) # [0, 0.25, 0.5, 0.75, 1] # Random arrays random_arr = np.random.random((3, 3)) normal_arr = np.random.normal(0, 1, (2, 2)) . Array Properties . arr = np.array([[1, 2, 3], [4, 5, 6]]) print(f\"Shape: {arr.shape}\") # (2, 3) print(f\"Size: {arr.size}\") # 6 print(f\"Dimensions: {arr.ndim}\") # 2 print(f\"Data type: {arr.dtype}\") # int64 . Array Operations . a = np.array([1, 2, 3, 4]) b = np.array([5, 6, 7, 8]) # Element-wise operations addition = a + b # [6, 8, 10, 12] subtraction = a - b # [-4, -4, -4, -4] multiplication = a * b # [5, 12, 21, 32] division = a / b # [0.2, 0.33, 0.43, 0.5] # Mathematical functions sqrt_a = np.sqrt(a) sin_a = np.sin(a) exp_a = np.exp(a) . Matrix Operations . # 2D arrays (matrices) A = np.array([[1, 2], [3, 4]]) B = np.array([[5, 6], [7, 8]]) # Matrix multiplication matrix_mult = np.dot(A, B) # or A @ B # Result: [[19, 22], [43, 50]] # Transpose A_T = A.T # or np.transpose(A) # Determinant and inverse det_A = np.linalg.det(A) inv_A = np.linalg.inv(A) # Eigenvalues and eigenvectors eigenvals, eigenvecs = np.linalg.eig(A) . Array Indexing and Slicing . arr = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) # Basic indexing print(arr[0]) # 0 print(arr[-1]) # 9 # Slicing print(arr[2:5]) # [2, 3, 4] print(arr[::2]) # [0, 2, 4, 6, 8] # 2D array indexing arr2d = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) print(arr2d[1, 2]) # 6 print(arr2d[0:2, 1:]) # [[2, 3], [5, 6]] # Boolean indexing mask = arr &gt; 5 print(arr[mask]) # [6, 7, 8, 9] . Reshaping and Concatenation . arr = np.arange(12) # Reshaping reshaped = arr.reshape(3, 4) flattened = reshaped.flatten() # Concatenation a = np.array([1, 2, 3]) b = np.array([4, 5, 6]) concatenated = np.concatenate([a, b]) # [1, 2, 3, 4, 5, 6] # Stacking stacked_v = np.vstack([a, b]) # Vertical stack stacked_h = np.hstack([a, b]) # Horizontal stack . Statistical Operations . data = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) # Basic statistics mean = np.mean(data) # 5.0 median = np.median(data) # 5.0 std = np.std(data) # 2.58 var = np.var(data) # 6.67 # Along specific axes mean_axis0 = np.mean(data, axis=0) # [4, 5, 6] mean_axis1 = np.mean(data, axis=1) # [2, 5, 8] # Min, max, argmin, argmax minimum = np.min(data) # 1 maximum = np.max(data) # 9 min_index = np.argmin(data) # 0 max_index = np.argmax(data) # 8 . Practical Example: Linear Algebra . # Solving linear system: Ax = b A = np.array([[3, 1], [1, 2]]) b = np.array([9, 8]) # Solution: x = A^(-1) * b x = np.linalg.solve(A, b) print(f\"Solution: x = {x}\") # [2, 3] # Verify solution print(f\"Verification: Ax = {A @ x}\") # [9, 8] . Working with Random Numbers . # Set seed for reproducibility np.random.seed(42) # Generate random data random_data = np.random.normal(0, 1, 1000) # Normal distribution uniform_data = np.random.uniform(0, 1, 100) # Uniform distribution # Random sampling indices = np.random.choice(len(random_data), size=10, replace=False) sample = random_data[indices] . ",
-    "url": "/labs/lab-01/python/#numpy-tutorial",
+    "url": "/ae-740-website/labs/lab-01/python/#numpy-tutorial",
     
     "relUrl": "/labs/lab-01/python/#numpy-tutorial"
-  },"27": {
+  },"44": {
     "doc": "Shell Basics",
     "title": "Shell basics",
     "content": " ",
-    "url": "/labs/lab-01/shell-basics/#shell-basics",
+    "url": "/ae-740-website/labs/lab-01/shell-basics/#shell-basics",
     
     "relUrl": "/labs/lab-01/shell-basics/#shell-basics"
-  },"28": {
+  },"45": {
     "doc": "Shell Basics",
     "title": "Table of contents",
     "content": ". | Shell basics . | Exploring the Filesystem . | pwd | ls . | File permissions and ownership | . | cd | find | . | Edit Filesystem . | mkdir | touch | rm | cp | mv | . | Viewing and Editing Files . | cat | nano and vim | . | Download, uncompress and execute a script . | Download | Uncompress | Run | . | Pipe | Output redirect | Superuser | Install packages | Get help | . | . ",
-    "url": "/labs/lab-01/shell-basics/#table-of-contents",
+    "url": "/ae-740-website/labs/lab-01/shell-basics/#table-of-contents",
     
     "relUrl": "/labs/lab-01/shell-basics/#table-of-contents"
-  },"29": {
+  },"46": {
     "doc": "Shell Basics",
     "title": "Exploring the Filesystem",
-    "content": "pwd . Modern filesystems are organized in folders, being able to navigate the filesystem is fundamental. Everytime we work with the shell we are within one folder, to know where we are we can use the command pwd (Print Working Directory): . $ pwd /home/username/vnav2020/lab1 . where username is the login username you set. ls . To list the contents of the current directory (files and/or child directories, etc.) we use ls (LiSt) . $ ls ex0.cpp ex1.cpp ex2.cpp final.cpp . File permissions and ownership . The concept of permissions and ownership is crucial in anu unix system. Every to file and directory is assigned 3 types of owner: . | User: is the owner of the file, by default, the person who created a file | Group: user-group can contain multiple users, all users belonging to a group will have the same access permissions to the file | Other: Any other user who has access to a file | . At the same time to every file and directory is assigned a type of permission . | Read | Write | Execute | . We get all this information using ls -l, for example: . $ ls -l total 1112 -rw-r--r-- 1 username staff 557042 Aug 24 21:57 dante.txt -rwxr-xr-x 1 username staff 40 Aug 23 18:36 hello.sh -rw-r--r-- 1 username staff 171 Aug 23 18:28 hello_vnav2020.tar.gz -rw-r--r-- 1 username staff 49 Aug 24 22:55 numbers.txt . The permissions are specified by the 1st field, the ownership is specified by the 3rd and 4th fields. Fo example, the file hello.sh is owned by me (username) and the group is staff. THe permission string is -rwxr-xr-x meaning that: . | The owner can read (r), write (w) and execute (x) the file | The group can read and execute | Other can read and execute | . cd . To change the current folder we can use cd (Change Directory). For example cd / moves to the file system root or . cd /home . To move to the parent of the current folder we use cd .., it can also be concatenated like cd ../.. to move two (or more) levels up. To move back to your home folder we use cd ~ (or simply cd). find . Image you have a folder containing many files and you want to locate a file called findme.txt. To accomplish it you can use . find . -name \"findme.txt\" . Let’s analyze the command. The . represent the current folder, so we are saying to find to look in the current folder recursively (you can change it with relative or absolute paths) for a file called findme.txt. Find is a powerful tool, you can have complex expression to match files, have a look at find --help. ",
-    "url": "/labs/lab-01/shell-basics/#exploring-the-filesystem",
+    "content": "pwd . Modern filesystems are organized in folders, being able to navigate the filesystem is fundamental. Everytime we work with the shell we are within one folder, to know where we are we can use the command pwd (Print Working Directory): . $ pwd /home/username/ae740_personal/lab1 . where username is the login username you set. ls . To list the contents of the current directory (files and/or child directories, etc.) we use ls (LiSt) . $ ls main.py random_vector.py . File permissions and ownership . The concept of permissions and ownership is crucial in anu unix system. Every to file and directory is assigned 3 types of owner: . | User: is the owner of the file, by default, the person who created a file | Group: user-group can contain multiple users, all users belonging to a group will have the same access permissions to the file | Other: Any other user who has access to a file | . At the same time to every file and directory is assigned a type of permission . | Read | Write | Execute | . We get all this information using ls -l, for example: . $ ls -l total 1112 -rw-r--r-- 1 username staff 557042 Aug 24 21:57 dante.txt -rwxr-xr-x 1 username staff 40 Aug 23 18:36 hello.sh -rw-r--r-- 1 username staff 171 Aug 23 18:28 hello_ae740_f25.tar.gz -rw-r--r-- 1 username staff 49 Aug 24 22:55 numbers.txt . The permissions are specified by the 1st field, the ownership is specified by the 3rd and 4th fields. Fo example, the file hello.sh is owned by me (username) and the group is staff. THe permission string is -rwxr-xr-x meaning that: . | The owner can read (r), write (w) and execute (x) the file | The group can read and execute | Other can read and execute | . cd . To change the current folder we can use cd (Change Directory). For example cd / moves to the file system root or . cd /home . To move to the parent of the current folder we use cd .., it can also be concatenated like cd ../.. to move two (or more) levels up. To move back to your home folder we use cd ~ (or simply cd). find . Image you have a folder containing many files and you want to locate a file called findme.txt. To accomplish it you can use . find . -name \"findme.txt\" . Let’s analyze the command. The . represent the current folder, so we are saying to find to look in the current folder recursively (you can change it with relative or absolute paths) for a file called findme.txt. Find is a powerful tool, you can have complex expression to match files, have a look at find --help. ",
+    "url": "/ae-740-website/labs/lab-01/shell-basics/#exploring-the-filesystem",
     
     "relUrl": "/labs/lab-01/shell-basics/#exploring-the-filesystem"
-  },"30": {
+  },"47": {
     "doc": "Shell Basics",
     "title": "Edit Filesystem",
     "content": "mkdir . mkdir (make directory) is used to create new, empty directories: let’s create a new dir named newdir . $ mkdir newdir $ ls newdir $ cd newdir . touch . touch was created to modify file timestamps, but it can also be used to quickly create an empty file. You can easily create a newfile.txt with . $ touch newfile.txt $ ls newfile.txt . rm . You can remove any file with rm – be careful, this is non-recoverable! I suggest to add the flag -i to prompt a confirmation message . rm -i newfile.txt rm: remove regular empty file 'newfile.txt'? y . You can also remove directories with rm, the only catch is that it returns an error when the folder is not-empty. The common practice, but pretty prone to non-recoverable errors, is to run rm -rf foldername. The command will remove the folder with all its content (r - recursive) forcing the operation (f - force). This operation will not ask for confirmation. You can of course add the flag i (i.e. rm -rfi foldername) but will ask confirmation for every file, this is pretty annoying if the folder contains many files. cp . Copying file is as simple as running cp (CoPy). If we want to duplicate the file numbers.txt we can run . $ cp numbers.txt numbers_copy.txt $ls numbers.txt numbers_copy.txt . mv . If we want to rename numbers_copy.txt to new_numbers.txt we can run . $ mv numbers_copy.txt new_numbers.txt $ ls new_numbers.txt numbers.txt . With the same command we can also move the file to another location, for example if we want to move numbers.txt to a newly create folder dataset we execute . $ mkdir dataset $ mv numbers.txt dataset/numbers.txt $ ls dataset numbers.txt . ",
-    "url": "/labs/lab-01/shell-basics/#edit-filesystem",
+    "url": "/ae-740-website/labs/lab-01/shell-basics/#edit-filesystem",
     
     "relUrl": "/labs/lab-01/shell-basics/#edit-filesystem"
-  },"31": {
+  },"48": {
     "doc": "Shell Basics",
     "title": "Viewing and Editing Files",
     "content": "cat . cat concatenates a list of files and sends them to the standard output stream and is often used to quickly view the content of a file. For example we can inspect the content of the file numbers.txt. $ cat numbers.txt One Two Three Four Five Six Seven Eight Nine Ten . nano and vim . nano is a minimalistic command-line text editor. It’s a great editor for beginners. More demanding user pefer vim. It’s a powerful and highly customizable text editor (I love it!). I strongly suggest to learn how to use vim, one of the best way to learn vim is to simply run vimtutor in your terminal but if you prefer games try Vim Adventures! . ",
-    "url": "/labs/lab-01/shell-basics/#viewing-and-editing-files",
+    "url": "/ae-740-website/labs/lab-01/shell-basics/#viewing-and-editing-files",
     
     "relUrl": "/labs/lab-01/shell-basics/#viewing-and-editing-files"
-  },"32": {
+  },"49": {
     "doc": "Shell Basics",
     "title": "Download, uncompress and execute a script",
-    "content": "In this section we will download a compressed file, extract the content, inspect and run a script. Download . Imagine you have to download (you have to, actually) http://www.mit.edu/~username/hello_vnav19.tar.gz you can use wget. wget http://www.mit.edu/~username/hello_vnav19.tar.gz . Uncompress . As you see it is a compressed file, to uncompress it we can use tar . tar -xvf hello_vnav2020.tar.gz . The flags xvf are respectively extract, verbose file. Now we would like to run the script. We should first inspect the file (never run a script without inspection), let’s use cat . $ cat hello.sh #!/usr/bin/env bash echo \"Hello world!\" . The file is not dangerous, it only print something to the terminal. Run . Before running the script we should verify that we can actually run the script so let’s see its permissions . $ ls -l hello.sh -rw-r--r-- 1 username staff 40 Aug 23 18:36 hello.sh . Ops! This time we have no right to run the script, we have to add it: . chmod +x hello.sh . Let’s check again: . ls -l hello.sh -rwxr-xr-x 1 username staff 40 Aug 23 18:36 hello.sh . Ok, now we can execute the script. To execute the script it’s enough to add ./ before the name of the file to e . $ ./hello.sh Hello world! . ",
-    "url": "/labs/lab-01/shell-basics/#download-uncompress-and-execute-a-script",
+    "content": "In this section we will download a compressed file, extract the content, inspect and run a script. Download . Imagine you have to download https://um-iral.github.io/ae-740-website/hello_ae740_f25.tar.gz you can use wget. wget https://um-iral.github.io/ae-740-website/hello_ae740_f25.tar.gz . Uncompress . As you see it is a compressed file, to uncompress it we can use tar . tar -xvf ae740_f25.tar.gz . The flags xvf are respectively extract, verbose file. Now we would like to run the script. We should first inspect the file (never run a script without inspection), let’s use cat . $ cat hello.sh #!/bin/bash echo \"Hello world!\" . The file is not dangerous, it only print something to the terminal. Run . Before running the script we should verify that we can actually run the script so let’s see its permissions . $ ls -l hello.sh -rw-r--r-- 1 username staff 40 Aug 27 18:36 hello.sh . Ops! This time we have no right to run the script, we have to add it: . chmod +x hello.sh . Let’s check again: . ls -l hello.sh -rwxr-xr-x 1 username staff 40 Aug 23 18:36 hello.sh . Ok, now we can execute the script. To execute the script it’s enough to add ./ before the name of the file to e . $ ./hello.sh Hello world! . ",
+    "url": "/ae-740-website/labs/lab-01/shell-basics/#download-uncompress-and-execute-a-script",
     
     "relUrl": "/labs/lab-01/shell-basics/#download-uncompress-and-execute-a-script"
-  },"33": {
+  },"50": {
     "doc": "Shell Basics",
     "title": "\n      Keep in mind.\n    ",
     "content": "When you use ./ the bash shell is creating a new shell, child of the current one and executing the code there. This is usually fine, sometimes you need to run a script like it was prompted directly in the current bash, in that case you should use the source command, e.g. source hello.sh . ",
-    "url": "/labs/lab-01/shell-basics/",
+    "url": "/ae-740-website/labs/lab-01/shell-basics/",
     
     "relUrl": "/labs/lab-01/shell-basics/"
-  },"34": {
+  },"51": {
     "doc": "Shell Basics",
     "title": "Pipe",
     "content": "The Pipe is a command in Linux that lets you use two or more commands such that output of one command serves as input to the next. In short, the output of each process directly as input to the next one like a pipeline. The symbol | denotes a pipe. For example, consider the following file: . $ cat numbers.txt One Two Three Four Five Six Seven Eight Nine Ten . We can sort the lines piping cat with sort . $ cat numbers.txt | sort Eight Five Four Nine One Seven Six Ten Three Two . ",
-    "url": "/labs/lab-01/shell-basics/#pipe",
+    "url": "/ae-740-website/labs/lab-01/shell-basics/#pipe",
     
     "relUrl": "/labs/lab-01/shell-basics/#pipe"
-  },"35": {
+  },"52": {
     "doc": "Shell Basics",
     "title": "Output redirect",
     "content": "We redirect the output of a command to a file. This is useful when we want to save the output of a program without writing specific code. The common commands that we use and their results are . | command &gt; output.txt | . The standard output stream will be redirected to the file only, it will not be visible in the terminal. If the file already exists, it gets overwritten. | command &amp;&gt; output.txt | . Both the standard output and standard error stream will be redirected to the file only, nothing will be visible in the terminal. If the file already exists, it gets overwritten. | command | tee output.txt | . The standard output stream will be copied to the file, it will still be visible in the terminal. If the file already exists, it gets overwritten. | command |&amp; tee output.txt | . Both the standard output and standard error streams will be copied to the file while still being visible in the terminal. If the file already exists, it gets overwritten. ",
-    "url": "/labs/lab-01/shell-basics/#output-redirect",
+    "url": "/ae-740-website/labs/lab-01/shell-basics/#output-redirect",
     
     "relUrl": "/labs/lab-01/shell-basics/#output-redirect"
-  },"36": {
+  },"53": {
     "doc": "Shell Basics",
     "title": "\n      Moreover.\n    ",
     "content": "If you want to append instead of overwrite you can use the double angle brackets &gt;&gt;. With tee instead add the flag -a (e.g. tee -a output.txt). ",
-    "url": "/labs/lab-01/shell-basics/",
+    "url": "/ae-740-website/labs/lab-01/shell-basics/",
     
     "relUrl": "/labs/lab-01/shell-basics/"
-  },"37": {
+  },"54": {
     "doc": "Shell Basics",
     "title": "Superuser",
     "content": "Working with the terminal you wil, sooner or later, get a “Permission denied” error. This occur because you do not have the right permission to run the command. For example if you try install vim you might get something like . $ apt install sl E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied) E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root? . The superuser (usually “root”) is the only person who can install software, to install vim we must elevate ourself to system administrator . The command we need to use is sudo . $ sudo apt install sl [sudo] password for username: Reading package lists... Done Building dependency tree Reading state information... Done The following NEW packages will be installed: sl 0 upgraded, 1 newly installed, 0 to remove and 2 not upgraded. Need to get 26.4 kB of archives. After this operation, 98.3 kB of additional disk space will be used. Get:1 http://us.archive.ubuntu.com/ubuntu bionic/universe amd64 sl amd64 3.03-17build2 [26.4 kB] Fetched 26.4 kB in 0s (250 kB/s) Selecting previously unselected package sl. (Reading database ... 162980 files and directories currently installed.) Preparing to unpack .../sl_3.03-17build2_amd64.deb ... Unpacking sl (3.03-17build2) ... Setting up sl (3.03-17build2) ... Processing triggers for man-db (2.8.3-2ubuntu0.1) ... ",
-    "url": "/labs/lab-01/shell-basics/#superuser",
+    "url": "/ae-740-website/labs/lab-01/shell-basics/#superuser",
     
     "relUrl": "/labs/lab-01/shell-basics/#superuser"
-  },"38": {
+  },"55": {
     "doc": "Shell Basics",
     "title": "Install packages",
     "content": "Ubuntu, like any other Linux distribution based on Debian, use the dpkg packaging system. A packaging system is a way to provide programs and applications for installation. This way, we don’t have to build every program from the source. APT (Advanced Package Tool) is the command line tool to interact with the packaging system. Installing a package that is available on one of the repository known by the system is as easy as running . sudo apt install &lt;package_1&gt; &lt;package_2&gt; &lt;package_3&gt; . For example if we want to install the package sl we would simply run . sudo apt install sl . Try to run sl now! . ",
-    "url": "/labs/lab-01/shell-basics/#install-packages",
+    "url": "/ae-740-website/labs/lab-01/shell-basics/#install-packages",
     
     "relUrl": "/labs/lab-01/shell-basics/#install-packages"
-  },"39": {
+  },"56": {
     "doc": "Shell Basics",
     "title": "Get help",
     "content": "It’s hard remember all commands with all their flags, man command in Linux is used to display the user manual of any command that we can run on the terminal. Moreover many commands offer an help (for example try to run ls --help). The common ways to summon the help is via the flags -h or --help. Last but not least, Google is your friend! . ",
-    "url": "/labs/lab-01/shell-basics/#get-help",
+    "url": "/ae-740-website/labs/lab-01/shell-basics/#get-help",
     
     "relUrl": "/labs/lab-01/shell-basics/#get-help"
-  },"40": {
+  },"57": {
     "doc": "Shell Basics",
     "title": "Shell Basics",
     "content": " ",
-    "url": "/labs/lab-01/shell-basics/",
+    "url": "/ae-740-website/labs/lab-01/shell-basics/",
     
     "relUrl": "/labs/lab-01/shell-basics/"
   }
