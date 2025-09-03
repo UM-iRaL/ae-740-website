@@ -14,5 +14,6 @@ nav_order: 1
 This website will be used to publish course labs, handouts, and other materials.  
 All important resources and updates for the course will be available here.
 
-- Start with **[Lectures](lectures/)**  
+**Acknowledgement:** Labs 1 and 2 are based on the content from [Visual Navigation for Autonomous Vehicles](https://vnav.mit.edu/) course taught at MIT. 
+
 - See **[Lab Handouts](labs/)**  
