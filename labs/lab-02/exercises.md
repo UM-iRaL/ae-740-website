@@ -29,18 +29,6 @@ To submit your solutions create a folder called `lab2` and push one or more file
 
 **Deadline:** To submit your solution, you will be creating a .zip file containing all of your solutions and upload it on Canvas under **Assignment > Lab 2: ROS2, \tf, and Homogeneous Transforms** by **Friday, September 12**, 11:59 EST.
 
-
-### Find a team
-Next lab will have a team section, you should start thinking about your team! Each team consists of 2-3 students.
-
-
-{: .warning-title}
->**Find a team**
->
->Please find your team members, fill out this [spreadsheet](https://docs.google.com/spreadsheets/d/1L6SpZpxE3lMkcNBSLKq2Eh0qhum2I8OBu84jUNXOeSE/edit?usp=sharing)
-
-Please fill it before **Friday, September 19th**.
-
 ## Setup workspace
 
 ### Create the ROS2 workspace
