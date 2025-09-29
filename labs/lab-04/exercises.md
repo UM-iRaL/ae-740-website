@@ -7,7 +7,7 @@ nav_order: 1
 has_toc: True
 ---
 
-# Lab 4 Exercises - Target Tracking with MPC
+# Exercises
 {: .no_toc .text-delta .fs-9 }
 
 1. TOC
