@@ -133,7 +133,7 @@ vz_ref(t) = 0.0
     <img src="../../../assets/img/lab4/target_tracking.png" alt="Target Tracking Example" style="width:90%;">
 </p>
 
-## Deliverables:
+## Deliverables
 1. **Working code** (`target_tracking_mpc.py` file only) that compiles and runs without errors
 2. **Video demonstration** (30-60 seconds) showing:
    - Both drones taking off
