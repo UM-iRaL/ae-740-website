@@ -40,7 +40,8 @@ In Lab 4, you will extend the MPC controller from Lab 3 to implement **target tr
 
 **Terminal 1:** Launch Gazebo SITL with 2 drones (inside `ae740_crazyflie_sim` directory)
 ```bash
-bash crazyflie_firmware/tools/crazyflie-simulation/simulator_files/gazebo/launch/sitl_target_tracking.sh -t 1 -p 1 -m crazyflie
+cd crazyflie-firmware
+bash tools/crazyflie-simulation/simulator_files/gazebo/launch/sitl_target_tracking.sh -t 1 -p 1 -m crazyflie
 ```
 
 **Terminal 2:** Luanch the Crazyswarm2 server                                          
