@@ -20,6 +20,8 @@ Each group should create a new folder called `TEAM_<N>` replacing `<N>` with you
 
 Each team will only need to submit one `TEAM_<N>.zip` to Canvas.
 
+For organizing the submission better, please include a single report (PDF format) inside your folder that includes your answers, explanations, video file names and **copy of the Python code** that you edit/write. Please make sure to include your team member names and IDs in the report. 
+
 **Deadline:** To submit your solution, please upload the corresponding files under `Assignment > Lab 4` by **Mon, Oct 13 11:59 EST**.
 
 ## Overview
