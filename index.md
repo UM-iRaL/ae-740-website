@@ -16,4 +16,6 @@ All important resources and updates for the course will be available here.
 
 **Acknowledgement:** Labs 1 and 2 are based on the content from [Visual Navigation for Autonomous Vehicles](https://vnav.mit.edu/) course taught at MIT. 
 
+**Team Sign-Up Sheet:** [https://docs.google.com/spreadsheets/d/1rjF909FFuGB8VL0pHh9zsYa6hP1AjWvZv1yTvpUZkuc/edit?usp=sharing](https://docs.google.com/spreadsheets/d/1rjF909FFuGB8VL0pHh9zsYa6hP1AjWvZv1yTvpUZkuc/edit?usp=sharing)
+
 - See **[Lab Handouts](labs/)**  
