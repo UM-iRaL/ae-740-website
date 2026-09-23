@@ -1,5 +1,6 @@
 ---
 layout: default
+published: false # not released yet (2026)
 title: "Exercises"
 parent: "Lab 9"
 grand_parent: Labs
@@ -26,7 +27,7 @@ For organizing the submission better, please include a single report (PDF format
 
 
 ## Overview
-In this lab, we will implement a Self-Adaptive Learning framework for target pursuit scenarios, based on Lab 4. The goal is to develop an MPC controller that can **adaptively select between multiple expert predictors** to track a moving target with unknown motion dynamics. This builds upon the concepts from Lab 8 (SSI-MPC) by incorporating multiple learned models and an adaptive selection strategy. The implementation is based on the paper "Self-Adaptive Learning and Model Predictive Control for Tracking Unknown Dynamics with No Regret", presented in the lecture.
+In this lab, we will implement a Self-Adaptive Learning framework for target pursuit scenarios, based on Lab 6. The goal is to develop an MPC controller that can **adaptively select between multiple expert predictors** to track a moving target with unknown motion dynamics. This builds upon the concepts from Lab 8 (SSI-MPC) by incorporating multiple learned models and an adaptive selection strategy. The implementation is based on the paper "Self-Adaptive Learning and Model Predictive Control for Tracking Unknown Dynamics with No Regret", presented in the lecture.
 
 In this scenario, one Crazyflie (`cf_2`) acts as the **pursuer** that must track another Crazyflie (`cf_1`) acting as the **target**. The pursuer uses self-adaptive MPC with multiple expert predictors to anticipate and follow the target's trajectory.
 
@@ -59,7 +60,7 @@ In this scenario, one Crazyflie (`cf_2`) acts as the **pursuer** that must track
 6. **MPC Parameters:** Fix MPC horizon to N=10, time horizon of 1s, and control update rate of 50 Hz (consistent with Lab 8).
 7. **Target Memory Vector:** Each expert constructs a feature vector from the past `mh` target positions (spaced at intervals based on the update rate). You will need to be careful in extracting the correct past positions from the dense data received at 50 Hz. Importantly, the positions must be converted to a 1D vector consistently across all functions inside `self_adaptive_mpc.py`.
 8. **Suggested Workflow:** Since there are multiple components to implement, we suggest that you first focus on getting a single (or multiple with same parameters) expert/predictor working correctly. The prediction from the algorithm, also visible on RViz, should match the target trajectory reasonably well. After finding a reasonable set of hyperparameters for one expert, you can then expand to multiple experts to see if the AS module converges to the *known* best expert over time.
-9. You will need to use code from previous labs (Lab 3 and Lab 8) to fill in the ROS2 subscriber/publisher setup and basic MPC components. Make sure you disable the wind disturbance in the simulator for this lab.
+9. You will need to use code from previous labs (Lab 5 and Lab 8) to fill in the ROS2 subscriber/publisher setup and basic MPC components. Make sure you disable the wind disturbance in the simulator for this lab.
 
 
 ## Deliverables 

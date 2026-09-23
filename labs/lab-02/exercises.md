@@ -27,7 +27,7 @@ To submit your solutions create a folder called `lab2` and push one or more file
 - for **code-based** deliverables, push the source code of the entire package
 
 
-**Deadline:** To submit your solution, you will be creating a .zip file containing all of your solutions and upload it on Canvas under **Assignment > Lab 2: ROS2, \tf, and Homogeneous Transforms** by **Friday, September 12**, 11:59 EST.
+**Deadline:** To submit your solution, you will be creating a .zip file containing all of your solutions and upload it on Canvas under **Assignment > Lab 2: ROS2, \tf, and Homogeneous Transforms** by **Monday, September 21**, 11:59 EST.
 
 ## Setup workspace
 

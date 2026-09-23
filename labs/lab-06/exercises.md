@@ -1,7 +1,8 @@
 ---
 layout: default
+published: false # not released yet (2026)
 title: "Exercises"
-parent: "Lab 4"
+parent: "Lab 6"
 grand_parent: Labs
 nav_order: 1
 has_toc: True
@@ -22,23 +23,25 @@ Each team will only need to submit one `TEAM_<N>.zip` to Canvas.
 
 For organizing the submission better, please include a single report (PDF format) inside your folder that includes your answers, explanations, video file names and **copy of the Python code** that you edit/write. Please make sure to include your team member names and IDs in the report. 
 
-**Deadline:** To submit your solution, please upload the corresponding files under `Assignment > Lab 4` by **Mon, Oct 13 11:59 EST**.
+**Deadline:** To submit your solution, please upload the corresponding files under `Assignment > Lab 6` by **Mon, Oct 13 11:59 EST**.
 
 ## Overview
-In Lab 4, you will extend the MPC controller from Lab 3 to implement **target tracking** capabilities. The main difference is that instead of following predefined trajectories, your drone will obtain the position of a target drone in real-time and use the Model Predictive Control (MPC) framework developed in Lab 3 to track the target. We launch two drones in the simulator: `cf_1` (the target) and `cf_2` (the pursuer). Each drone runs its own instance of the MPC controller. The target drones runs the MPC controller from Lab 3 to track fixed trajectories, whereas `cf_2` receives real-time position updates of `cf_1` via a ROS2 topic subscription. For this lab, the deliverable includes the new MPC controller node, that tracks a specific target drone. We will use the same simulator for the Crazyflie quadrotor, and also the same `controller_pkg` ROS2 package that we developed in Lab 3. The new files for Lab 4 are provided in the `lab4` folder of the `ae740_labs` repository. 
+In Lab 6, you will extend the MPC controller from Lab 5 to implement **target tracking** capabilities. The main difference is that instead of following predefined trajectories, your drone will obtain the position of a target drone in real-time and use the Model Predictive Control (MPC) framework developed in Lab 5 to track the target. We launch two drones in the simulator: `cf_1` (the target) and `cf_2` (the pursuer). Each drone runs its own instance of the MPC controller. The target drones runs the MPC controller from Lab 5 to track fixed trajectories, whereas `cf_2` receives real-time position updates of `cf_1` via a ROS2 topic subscription. For this lab, the deliverable includes the new MPC controller node, that tracks a specific target drone. We will use the same simulator for the Crazyflie quadrotor, and also the same `controller_pkg` ROS2 package that we developed in Lab 5. The new files for Lab 6 are provided in the `lab6` folder of the `ae740_labs` repository. 
 
 
 ## Instructions for using the files 
-1. Pull the latest version of `ae740_labs` repository to get the Lab 4 files (is the `lab4` folder):
+1. Pull the latest version of `ae740_labs` repository to get the Lab 6 files (is the `lab6` folder):
 
-2. Copy the `target_tracking_mpc.py` file from `lab4` folder to your existing `ros2_ws/src/controller_pkg/controller_pkg/` directory, that we used in Lab 3. This is important as this file is the equivalent for the `crazyflie_mpc.py` file and also calls the `quadrotor_simplified_model.py` and `tracking_mpc.py` files that you developed in Lab 3.    
+2. Copy the `target_tracking_mpc.py` file from `lab6` folder to your existing `ros2_ws/src/controller_pkg/controller_pkg/` directory, that we used in Lab 5. This is important as this file is the equivalent for the `crazyflie_mpc.py` file and also calls the `quadrotor_simplified_model.py` and `tracking_mpc.py` files that you developed in Lab 5.    
 
-3. Inside the `ros2_ws/src/controller_pkg` directory, create a new folder called `launch` and add a new launch file `launch_lab4_target_tracking.launch..py` provided in the `lab4` folder. This launch file will launch two drones -- one with the `target_tracking_mpc.py` node, and the other with the `crazyflie_mpc.py` node.
+3. Inside the `ros2_ws/src/controller_pkg` directory, create a new folder called `launch` and add a new launch file `launch_lab6_target_tracking.py` provided in the `lab6` folder. This launch file will launch two drones -- one with the `target_tracking_mpc.py` node, and the other with the `crazyflie_mpc.py` node.
 
-4. **Replace** the existing `setup.py` file in `controller_pkg` with the one provided in the `lab4` folder. This is important as it ensures that the new launch file can be found and executed correctly.
+4. **Replace** the existing `setup.py` file in `controller_pkg` with the one provided in the `lab6` folder. This is important as it ensures that the new launch file can be found and executed correctly.
 
 ## Instruction for running the target tracking simulation
 *These steps assume you completed the coding part in the `target_tracking_mpc.py` file.*
+
+**Before launching:** enable both drones in `ros2_ws/src/crazyswarm2/crazyflie/config/crazyflies.yaml` by setting `enabled: true` for `cf_1` (target) and `cf_2` (pursuer). All other drones (`cf_3` to `cf_8`) must stay `enabled: false`. The launch script does not change this file for you.
 
 **Terminal 1:** Launch Gazebo SITL with 2 drones (inside `ae740_crazyflie_sim` directory)
 ```bash
@@ -57,7 +60,7 @@ ros2 launch crazyflie launch.py backend:=cflib
 **Terminal 3:** Launch MPC controllers for both drones
 ```bash
 cd ros2_ws/ && source install/setup.bash 
-ros2 launch controller_pkg launch_lab4_target_tracking.py
+ros2 launch controller_pkg launch_lab6_target_tracking.py
 ```
 
 **Terminal 4:** Commands to takeoff and start the target tracking
@@ -71,15 +74,15 @@ ros2 topic pub -t 1 /all/mpc_trajectory std_msgs/msg/Empty
 **Note:** Sometimes, rarely though, you might get the warning `Empty state message.`, which is because either position or velocity of one of the drones is not properly initialized on the ROS2 server. To resolve, re-run the main commands on terminals 1 and 2 before attempting again.
 
 ## Deliverable 1 - Complete the Target Tracking MPC Implementation (80 pts)
-The new controller node `target_tracking_mpc.py` has most of the structure same as `crazyflie_mpc.py` node used in Lab 3. The key differences are summarized below:
+The new controller node `target_tracking_mpc.py` has most of the structure same as `crazyflie_mpc.py` node used in Lab 5. The key differences are summarized below:
 
-### Lab 3 (Basic MPC)
+### Lab 5 (Basic MPC)
 - The main controller node: `crazyflie_mpc.py`
 - Single drone following predefined trajectories 
 - Static reference generation
 - No real-time target information
 
-### Lab 4 (Target Tracking MPC)
+### Lab 6 (Target Tracking MPC)
 - The main controller node: `target_tracking_mpc.py`
 - **Two drones**: `cf_1` (target) and `cf_2` (pursuer/tracker)
 - **Real-time target tracking**: `cf_2` follows `cf_1`'s position
@@ -87,18 +90,18 @@ The new controller node `target_tracking_mpc.py` has most of the structure same 
 - **New trajectory type**: `'target_tracking'` 
 - **Additional subscriber**: Target drone position subscriber
 
-In the `target_tracking_mpc.py` file, the comments `# [TODO LAB 4]` indicate where you need to implement the additions for the target tracking functionality, in contrast to the `crazyflie_mpc.py` file from Lab 3. You can specifically search for `[TODO LAB 4]` to find the changes. The starter code include the `TODO` comments from Lab 3 as well, which you can ignore after finishing the Lab3 exercises.
+In the `target_tracking_mpc.py` file, the comments `# [TODO LAB 6]` indicate where you need to implement the additions for the target tracking functionality, in contrast to the `crazyflie_mpc.py` file from Lab 5. You can specifically search for `[TODO LAB 6]` to find the changes. The starter code include the `TODO` comments from Lab 5 as well, which you can ignore after finishing the Lab 5 exercises.
 
 
-**Similarities with Lab 3:**
+**Similarities with Lab 5:**
 - Position subscriber for own drone (`cf_2`)
 - Velocity subscriber for own drone (`cf_2`) 
 - MPC solution path publisher
 - Attitude setpoint command publisher
 - Similar structure for initialization, timers, and MPC solver integration
-- Target (`cf_1`) runs using the basic MPC controller from Lab 3 
+- Target (`cf_1`) runs using the basic MPC controller from Lab 5 
 
-**Additions for Lab 4:**
+**Additions for Lab 6:**
 - New variable `target_name` is introduced to specify the target drone.
 - The target tracking functionality is added by introducing a trajectory type `'target_tracking'` in the `trajectory_function()`, where the reference position is set to the latest received target drone position.
 - A new subscriber and callback function is created to listen to the target drone's position.
@@ -133,7 +136,7 @@ vz_ref(t) = 0.0
 - The tracking should be smooth without oscillations
 
 <p align="center">
-    <img src="../../../assets/img/lab4/target_tracking.png" alt="Target Tracking Example" style="width:90%;">
+    <img src="../../../assets/img/lab6/target_tracking.png" alt="Target Tracking Example" style="width:90%;">
 </p>
 
 ## Deliverables

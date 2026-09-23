@@ -1,5 +1,5 @@
-title: "Online Learning for Control (Fall 2025)"
-description: "AEROSP740 -- Fall 2025"
+title: "Online Learning for Control (Fall 2026)"
+description: "AEROSP740 -- Fall 2026"
 # Remote theme pin to a tag for stability; bump later when you want.
 remote_theme: just-the-docs/just-the-docs@v0.8.0
 
@@ -10,7 +10,7 @@ math: mathjax
 search_enabled: true
 heading_anchors: true
 aux_links:
-  Syllabus: https://tinyurl.com/740-25-syllabus
+  Syllabus: https://tinyurl.com/740-26-syllabus
 nav_external_links_new_tab: true
 
 # Build/site

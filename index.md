@@ -7,7 +7,7 @@ nav_order: 1
 # AEROSP 740: Online Learning for Control
 {: .fs-9 }
 
-**Fall 2025 -- University of Michigan**
+**Fall 2026 -- University of Michigan**
 {: .fs-6 .fw-300 .text-center}
 
 ![Course Banner](assets/img/cover_image.jpg)
@@ -16,6 +16,6 @@ All important resources and updates for the course will be available here.
 
 **Acknowledgement:** Labs 1 and 2 are based on the content from [Visual Navigation for Autonomous Vehicles](https://vnav.mit.edu/) course taught at MIT. 
 
-**Team Sign-Up Sheet:** [https://docs.google.com/spreadsheets/d/1rjF909FFuGB8VL0pHh9zsYa6hP1AjWvZv1yTvpUZkuc/edit?usp=sharing](https://docs.google.com/spreadsheets/d/1rjF909FFuGB8VL0pHh9zsYa6hP1AjWvZv1yTvpUZkuc/edit?usp=sharing)
+**Team Sign-Up Sheet:** <https://docs.google.com/spreadsheets/d/10t1gLckfwhUANSThTt20O8_-hHTVuXM0R6yjItDo7Gs/edit?usp=sharing>
 
 - See **[Lab Handouts](labs/)**  

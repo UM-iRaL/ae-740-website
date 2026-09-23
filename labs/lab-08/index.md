@@ -1,8 +1,9 @@
 ---
 layout: default
+published: false # not released yet (2026)
 title: "Lab 8"
 parent: Labs
-nav_order: 5
+nav_order: 8
 has_children: true
 ---
 
