@@ -27,7 +27,7 @@ The folder must contain:
 2. **Code:** the source code of the entire `controller_pkg` package.
 3. **Videos:** the demo videos of Deliverables 2 and 3. Keep each video short (under 1 minute) and compressed (e.g., MP4 at 720p), so that the zip file stays under 100 MB.
 
-**Deadline:** To submit your solution, please upload the corresponding files under `Assignment > Lab 3` by **Mon, Oct 5 11:59 EST**.
+**Deadline:** To submit your solution, please upload the corresponding files under `Assignment > Lab 3` by **Wed, Oct 7 11:59 EST**.
 
 
 ## Trajectory tracking for UAVs
