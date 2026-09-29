@@ -1,13 +1,13 @@
 ---
 layout: default
-published: false # not released yet (2026)
-title: "Lab 5"
+# published: false # not released yet (2026)
+title: "Lab 4"
 parent: Labs
-nav_order: 5
+nav_order: 4
 has_children: true
 ---
 
-# Lab 5
+# Lab 4
 
 In this lab we will implement a model predictive controller (MPC) for a simple trajectory tracking task, using the Crazyflie SITL simulator from Lab 3.
 

@@ -1,8 +1,8 @@
 ---
 layout: default
-published: false # not released yet (2026)
+# published: false # not released yet (2026)
 title: "Exercises"
-parent: "Lab 5"
+parent: "Lab 4"
 grand_parent: Labs
 nav_order: 1
 has_toc: True
@@ -21,9 +21,9 @@ has_toc: True
 
 ### Individual
 
-Create a folder called `lab5` that includes your answers (for math-related questions LaTeX is preferred but handwritten is accepted too). Zip the folder and upload on Canvas.
+Create a folder called `lab4` that includes your answers (for math-related questions LaTeX is preferred but handwritten is accepted too). Zip the folder and upload on Canvas.
 
-Each student needs to submit their own `lab5` folder to Canvas.
+Each student needs to submit their own `lab4` folder to Canvas.
 
 ### Team
 
@@ -33,7 +33,7 @@ Each team will only need to submit one `TEAM_<N>.zip` to Canvas.
 
 **Additional Instructions:** For organizing the submission better, please include a single report (PDF format) inside your folder that includes your answers, explanations, video file names and **copy of the Python code** that you edit/write. Please make sure to include your team member names and IDs in the report, and follow this format for future lab submissions as well. 
 
-**Deadline:** To submit your solution, please upload the corresponding files under `Assignment > Lab 5` by **Mon, Oct 13 11:59 EST**.
+**Deadline:** To submit your solution, please upload the corresponding files under `Assignment > Lab 4` by **Wed, Oct 14 11:59 EST**.
 
 
 ## Individual
@@ -47,7 +47,7 @@ Each team will only need to submit one `TEAM_<N>.zip` to Canvas.
 
 
 <p align="center">
-    <img src="../../../assets/img/lab5/drone_spinning.png" alt="Two drones example" style="width:50%;">
+    <img src="../../../assets/img/lab4/drone_spinning.png" alt="Two drones example" style="width:50%;">
 </p>
 
 
@@ -90,16 +90,16 @@ In this section, we are going to implement the Model Predictive Controller on th
 #### Getting the code
 We use the same simulator and `controller_pkg` package from Lab 3. Follow these steps to get the new files:
 
-1. Pull the latest version of your lab repository. The `lab5` folder contains the MPC files that you need to edit (`crazyflie_mpc.py`, `tracking_mpc.py`, `quadrotor_simplified_model.py`) and an updated `setup.py`. Pull the latest version using:
+1. Pull the latest version of your lab repository. The `lab4` folder contains the MPC files that you need to edit (`crazyflie_mpc.py`, `tracking_mpc.py`, `quadrotor_simplified_model.py`) and an updated `setup.py`. Pull the latest version using:
     ```bash
     cd ~/ae740_labs
     git pull
     ```
 
-2. Copy the new files into the controller package from Lab 3, and **replace** its `setup.py` with the one from `lab5` (it registers the new MPC controller node):
+2. Copy the new files into the controller package from Lab 3, and **replace** its `setup.py` with the one from `lab4` (it registers the new MPC controller node):
     ```bash
-    cp ~/ae740_labs/lab5/crazyflie_mpc.py ~/ae740_labs/lab5/tracking_mpc.py ~/ae740_labs/lab5/quadrotor_simplified_model.py ~/ae740_crazyflie_sim/ros2_ws/src/controller_pkg/controller_pkg/
-    cp ~/ae740_labs/lab5/setup.py ~/ae740_crazyflie_sim/ros2_ws/src/controller_pkg/
+    cp ~/ae740_labs/lab4/crazyflie_mpc.py ~/ae740_labs/lab4/tracking_mpc.py ~/ae740_labs/lab4/quadrotor_simplified_model.py ~/ae740_crazyflie_sim/ros2_ws/src/controller_pkg/controller_pkg/
+    cp ~/ae740_labs/lab4/setup.py ~/ae740_crazyflie_sim/ros2_ws/src/controller_pkg/
     ```
 
 
