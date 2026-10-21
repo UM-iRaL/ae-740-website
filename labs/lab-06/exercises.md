@@ -1,6 +1,6 @@
 ---
 layout: default
-published: false # not released yet (2026)
+published: true # not released yet (2026)
 title: "Exercises"
 parent: "Lab 6"
 grand_parent: Labs
@@ -17,136 +17,78 @@ has_toc: True
 
 ## Submission
 ### Team
-Each group should create a new folder called `TEAM_<N>` replacing `<N>` with your team number. For example team 2 will name their folder `TEAM_2`. Please put the source code of the entire `controller_pkg` package in the folder `TEAM_2`. Zip the folder and submit to Canvas.
+Each group should create a new folder called `TEAM_<N>` replacing `<N>` with your team number. For example team 2 will name their folder `TEAM_2`. Zip the folder and submit to Canvas.
 
 Each team will only need to submit one `TEAM_<N>.zip` to Canvas.
 
 For organizing the submission better, please include a single report (PDF format) inside your folder that includes your answers, explanations, video file names and **copy of the Python code** that you edit/write. Please make sure to include your team member names and IDs in the report. 
 
-**Deadline:** To submit your solution, please upload the corresponding files under `Assignment > Lab 6` by **Mon, Oct 13 11:59 EST**.
+**Deadline:** To submit your solution, please upload the corresponding files under `Assignment > Lab 6` by **Tue, Nov 11 11:59 EST**.
+
 
 ## Overview
-In Lab 6, you will extend the MPC controller from Lab 5 to implement **target tracking** capabilities. The main difference is that instead of following predefined trajectories, your drone will obtain the position of a target drone in real-time and use the Model Predictive Control (MPC) framework developed in Lab 5 to track the target. We launch two drones in the simulator: `cf_1` (the target) and `cf_2` (the pursuer). Each drone runs its own instance of the MPC controller. The target drones runs the MPC controller from Lab 5 to track fixed trajectories, whereas `cf_2` receives real-time position updates of `cf_1` via a ROS2 topic subscription. For this lab, the deliverable includes the new MPC controller node, that tracks a specific target drone. We will use the same simulator for the Crazyflie quadrotor, and also the same `controller_pkg` ROS2 package that we developed in Lab 5. The new files for Lab 6 are provided in the `lab6` folder of the `ae740_labs` repository. 
-
+In this lab, we will implement online learning algorithm for wind distrubances and model inaccuracies using the MPC framework. Particularly, the goal is to implement a recent algorithm "Simulataneous System Identification and Model Predictive Control" (SSI-MPC) based on the paper Zhou et al., "Simultaneous System Identification and Model Predictive Control with No Dynamic Regret", TRO 2025. We will build upon the MPC controller developed in Lab 4 (MPC for trajectory tracking) and extend it to incorporate online learning capabilities to handle unknown wind and inaccurate model parameters. We will use the same simulator for the Crazyflie quadrotor, and also the same `controller_pkg` ROS2 package that we developed in Lab 4. The new files for Lab 6 are provided in the `lab6` folder of the `ae740_labs` repository.
 
 ## Instructions for using the files 
-1. Pull the latest version of `ae740_labs` repository to get the Lab 6 files (is the `lab6` folder):
+1. Pull the latest version of `ae740_labs` repository to get the Lab 6 files (is the `lab6` folder): `git pull origin main`.
+2. Copy the `crazyflie_ssi_mpc_node.py` (equivalent to `crazyflie_mpc.py`) and `ssi_mpc.py` file (equivalent to `tracking_mpc.py`) from `lab6` folder to your existing `ros2_ws/src/controller_pkg/controller_pkg/` directory, that we used in Lab 4.  
+3. Inside the `ros2_ws/src/controller_pkg` directory, create a new launch file for this lab (*not provided here*) and add the new node as an executable to the `setup.py` file. You can choose to use the `ros2 run` command instead of a launch file, since we are only launching one node here.
 
-2. Copy the `target_tracking_mpc.py` file from `lab6` folder to your existing `ros2_ws/src/controller_pkg/controller_pkg/` directory, that we used in Lab 5. This is important as this file is the equivalent for the `crazyflie_mpc.py` file and also calls the `quadrotor_simplified_model.py` and `tracking_mpc.py` files that you developed in Lab 5.    
+## Instructions for implementing the paper
+1. Read the paper "Simultaneous System Identification and Model Predictive Control with No Dynamic Regret", Zhou et al., TRO 2025, particularly, Sections II and III, that describe the problem formulation and the SSI-MPC algorithm.
+2. Section V-A  contains the details about the actual implementation and parameters used for the SSI-MPC algorithm.
+3. The main implementation of *Algorithm 1*, in the paper is inside the `ssi_mpc.py` file, using the function `update_step()`. 
+4. The `crazyflie_ssi_mpc_node.py` file contains the initialization of the parameters for the SSI-MPC algorithm, which are passed to the main solver object of class `SSIMpc` defined in `ssi_mpc.py`.
+5. Read throught the comments and code structure in both files carefully before starting the implementation. For better understanding, it is also recommended to compare with the `tracking_mpc.py` and `crazyflie_mpc.py` files from Lab 4 to understand how new functionalities are added for SSI-MPC.
 
-3. Inside the `ros2_ws/src/controller_pkg` directory, create a new folder called `launch` and add a new launch file `launch_lab6_target_tracking.py` provided in the `lab6` folder. This launch file will launch two drones -- one with the `target_tracking_mpc.py` node, and the other with the `crazyflie_mpc.py` node.
 
-4. **Replace** the existing `setup.py` file in `controller_pkg` with the one provided in the `lab6` folder. This is important as it ensures that the new launch file can be found and executed correctly.
+## Comments on Implementation details
+1.  SSI-MPC requires modification to the MPC model, to include the learned prediction model for solving the optimal control problem. Hence, we incorporate this inside the `ssi_mpc.py` file, inside the `ssi_augmented_model()` function, instead of the `quadrotor_simplified_model.py` file used in Lab 4.
+2. We use the non-linear function $\phi(\cdot)$ in the paper, as a *cosine* function. 
+3. Based on comment Sec. V-A-4 in the paper, we do not use any function $B(w)$. Additionally, we also skip the *Algorithm 1: step 9* that involves the projection of $\alpha$.
+4. The function `update_step()` in `ssi_mpc.py` essentially assumes the control input from the previous MPC iteration (*Algorithm 1: step 4*). Hence, it contains the *steps 5-8* from the *Algorithm 1*.
+5. It is recommended to read carefull through the variable definitions in the `__init__()` functions and take a note of the dimensions of the variables used in the implementation. You can then use to implement the algorithm on the paper first, using the same variable names for better clarity.
+6. For this assignment, we fix the MPC horizon to $N=10$ and the time horizon of $1s$. The MPC is solved at the control update rate of $50 Hz$.
+7. At the end, you might require tuning for the learning rate and standard deviation of the Gaussian kernel to get good performance. 
+8. You will need to use the code from Lab 4 to fill the parts of the code that are not related to SSI-MPC, in the given files. It follows the same structure as Lab 4, and you must copy the relevant parts from your Lab 4 implementation.
+9. You can use low costs for position error to see the effect of wind disturbances more clearly in the nominal MPC. You can then use the same low costs for SSI-MPC as well, to compare the performance. This is to observe the effect of learning in SSI-MPC, since high costs can mask the effect of wind disturbances in the nominal MPC.
 
-## Instruction for running the target tracking simulation
-*These steps assume you completed the coding part in the `target_tracking_mpc.py` file.*
-
-**Before launching:** enable both drones in `ros2_ws/src/crazyswarm2/crazyflie/config/crazyflies.yaml` by setting `enabled: true` for `cf_1` (target) and `cf_2` (pursuer). All other drones (`cf_3` to `cf_8`) must stay `enabled: false`. The launch script does not change this file for you.
-
-**Terminal 1:** Launch Gazebo SITL with 2 drones (inside `ae740_crazyflie_sim` directory)
-```bash
-cd crazyflie-firmware
-bash tools/crazyflie-simulation/simulator_files/gazebo/launch/sitl_target_tracking.sh -t 1 -p 1 -m crazyflie
+## Instructions for adding wind disturbances in the simulator
+1. To add wind disturbances in the Gazebo simulator, you need to modify the world file `ae740_crazyflie_sim/crazyflie-firmware/tools/crazyflie-simulation/simulator_files/gazebo/worlds/crazysim_default.sdf`. Add the following line inside the `<world>` tag near the `<atmosphere>` tag:
+```xml
+        <!-- Other code -->
+        <gravity>0 0 -9.80665</gravity>
+        <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+        <atmosphere type='adiabatic'/>
+        <!-- Add wind disturbance here -->
+        <wind>
+            <linear_velocity>1 1 0</linear_velocity>
+        </wind>
+        <!-- Other code -->
 ```
 
-**Terminal 2:** Luanch the Crazyswarm2 server                                          
-```bash
-cd ros2_ws/ 
-colcon build --symlink-install  # if not already built
-source install/setup.bash
-ros2 launch crazyflie launch.py backend:=cflib
+You can modify the `<linear_velocity>` values to change the wind speed and direction as needed.
+
+2. Enable the wind in the quadrotor model `ae740_crazyflie_sim/crazyflie-firmware/tools/crazyflie-simulation/simulator_files/gazebo/models/crazyflie/model.sdf` and `ae740_crazyflie_sim/crazyflie-firmware/tools/crazyflie-simulation/simulator_files/gazebo/models/crazyflie/model.sdf.jinja` **(BOTH)**, by adding the following line inside the `<link name='base_link'>` tag:
+```xml
+    <!-- Other code -->
+    <model name="crazyflie">
+        <enable_wind>true</enable_wind> <!-- Add this line -->
+        <pose>0 0 0 0 0 0</pose>
+        <static>false</static>
+        <!-- Other code -->
 ```
 
-**Terminal 3:** Launch MPC controllers for both drones
-```bash
-cd ros2_ws/ && source install/setup.bash 
-ros2 launch controller_pkg launch_lab6_target_tracking.py
-```
+## Deliverables 
+1. **Mathematical Interpretation (10 pts):** Provide a brief explanation of how the SSI-MPC algorithm works in practical terms, based on your implementation. Include brief mathematical descriptions of the key steps involved that you implemented. 
+2. **Wind Resiliency (50 pts):** Demonstrate the performance of your SSI-MPC controller in the presence of wind disturbances. Provide at least two different wind scenarios (e.g., different wind speeds and directions) and show how your controller adapts to these conditions. Include plots of the drone's states (X-Y-Z) for SSI-MPC and nominal MPC (from Lab 4), and plot errors to compare the effectiveness. Use the `lemniscate` trajectory for this demonstration.
 
-**Terminal 4:** Commands to takeoff and start the target tracking
-```bash
-# Step 1: Takeoff both drones
-ros2 topic pub -t 1 /all/mpc_takeoff std_msgs/msg/Empty
+*Note that high-values of wind speed (e.g., > 3 m/s) might practically cause crash immediately after the take-off. This is due to Gazebo Sim, rather than SSI-MPC.*
 
-# Step 2: Start the tracking simulation
-ros2 topic pub -t 1 /all/mpc_trajectory std_msgs/msg/Empty
-```
-**Note:** Sometimes, rarely though, you might get the warning `Empty state message.`, which is because either position or velocity of one of the drones is not properly initialized on the ROS2 server. To resolve, re-run the main commands on terminals 1 and 2 before attempting again.
+3. **Model Inaccuracy Handling (20 pts):** Test the SSI-MPC controller's ability to handle model inaccuracies. Introduce discrepancies in the quadrotor's mass and or deliberate corruption of model (say replacing $sin()$ with $cos()$ in the model) in the MPC model. Evaluate how well the SSI-MPC controller compensates for these inaccuracies during flight compared to the same discrepancies in the nominal MPC. Provide plots of the drone's states (X-Y-Z) and difference between errors of both SSI-MPC and nominal MPC (from Lab 4) using any **3D** trajectory of your choice. Also briefly mention the modifications you made to introduce model inaccuracies.
 
-## Deliverable 1 - Complete the Target Tracking MPC Implementation (80 pts)
-The new controller node `target_tracking_mpc.py` has most of the structure same as `crazyflie_mpc.py` node used in Lab 5. The key differences are summarized below:
+**Final Submissions:** 1. The completed `crazyflie_ssi_mpc_node.py` and `ssi_mpc.py` code files. 2. PDF report including answers to the deliverables, plots, explanations and copy of the code. 3. Video files demonstrating the performance for each deliverable.
 
-### Lab 5 (Basic MPC)
-- The main controller node: `crazyflie_mpc.py`
-- Single drone following predefined trajectories 
-- Static reference generation
-- No real-time target information
-
-### Lab 6 (Target Tracking MPC)
-- The main controller node: `target_tracking_mpc.py`
-- **Two drones**: `cf_1` (target) and `cf_2` (pursuer/tracker)
-- **Real-time target tracking**: `cf_2` follows `cf_1`'s position
-- **Dynamic reference generation** based on target drone's pose
-- **New trajectory type**: `'target_tracking'` 
-- **Additional subscriber**: Target drone position subscriber
-
-In the `target_tracking_mpc.py` file, the comments `# [TODO LAB 6]` indicate where you need to implement the additions for the target tracking functionality, in contrast to the `crazyflie_mpc.py` file from Lab 5. You can specifically search for `[TODO LAB 6]` to find the changes. The starter code include the `TODO` comments from Lab 5 as well, which you can ignore after finishing the Lab 5 exercises.
-
-
-**Similarities with Lab 5:**
-- Position subscriber for own drone (`cf_2`)
-- Velocity subscriber for own drone (`cf_2`) 
-- MPC solution path publisher
-- Attitude setpoint command publisher
-- Similar structure for initialization, timers, and MPC solver integration
-- Target (`cf_1`) runs using the basic MPC controller from Lab 5 
-
-**Additions for Lab 6:**
-- New variable `target_name` is introduced to specify the target drone.
-- The target tracking functionality is added by introducing a trajectory type `'target_tracking'` in the `trajectory_function()`, where the reference position is set to the latest received target drone position.
-- A new subscriber and callback function is created to listen to the target drone's position.
-
-
-
-## Deliverable 2 - Testing and Validation (20 pts)
-Add a new trajectory with name `lemniscate` in the `trajectory_function()` of `crazyflie_mpc.py` file. The lemniscate (figure-eight) trajectory can be defined as:
-
-**Parameters:**
-- `a = 1.0` 
-- `b = 0.5 * tanh(0.1 * t)` (for smooth start)
-
-**Position:**
-```
-x_ref(t) = x_start + a * sin(b * t)
-y_ref(t) = y_start + a * sin(b * t) * cos(b * t)  
-z_ref(t) = z_start
-```
-
-**Velocity:**
-```
-vx_ref(t) = a * b * cos(b * t)
-vy_ref(t) = a * b * cos(2 * b * t)
-vz_ref(t) = 0.0
-```
-
-## Expected Behavior
-- `cf_1` should follow its predefined trajectory (circle, lemniscate, etc.)
-- `cf_2` should track and follow `cf_1`'s position
-- Both drones should maintain stable flight
-- The tracking should be smooth without oscillations
-
-<p align="center">
-    <img src="../../../assets/img/lab6/target_tracking.png" alt="Target Tracking Example" style="width:90%;">
-</p>
-
-## Deliverables
-1. **Working code** (`target_tracking_mpc.py` file only) that compiles and runs without errors
-2. **Video demonstration** (30-60 seconds) showing:
-   - Both drones taking off
-   - `cf_1` following a trajectory  
-   - `cf_2` successfully tracking `cf_1`
-   - Two separate videos for `circle` and `lemniscate` trajectories
-3. **Parameter tuning** documentation explaining any changes made to MPC parameters (changes to number of steps, weights, control rate can be needed for stable tracking)
-
-
-
+## Reference
+Zhou, Hongyu, and Vasileios Tzoumas. "Simultaneous system identification and model predictive control with no dynamic regret." IEEE Transactions on Robotics (2025).
+ [Link](https://arxiv.org/pdf/2407.04143)

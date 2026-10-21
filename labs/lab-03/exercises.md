@@ -66,7 +66,7 @@ A detailed installation procedure has been given [**HERE**](https://github.com/U
 4. [crazyflie-lib-python](https://github.com/UM-iRaL/ae740_crazyflie_sim?tab=readme-ov-file#5-crazyflie-python-library) installation inside `ae740_venv`
 5. [Building ROS2 Workspace](https://github.com/UM-iRaL/ae740_crazyflie_sim?tab=readme-ov-file#7-ros-2-workspace) for the Crazyswarm2 ROS2 server and controller package.
 
-The Acados installation in the README is only needed for the MPC controllers, and you can skip it for this lab. We will install it in Lab 5.
+The Acados installation in the README is only needed for the MPC controllers, and you can skip it for this lab. We will install it in Lab 4.
 
 Please follow each step carefully, as the setup process is extensive and essential for successful development. This environment is specifically designed to support controller development for hardware experiments. Later in the course, you will use the same codebase to deploy and test your control algorithms directly on the Crazyflie drone hardware!
 
