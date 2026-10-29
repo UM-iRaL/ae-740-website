@@ -1,8 +1,8 @@
 ---
 layout: default
-published: false # not released yet (2026)
+published: true # not released yet (2026)
 title: "Exercises"
-parent: "Lab 9"
+parent: "Lab 7"
 grand_parent: Labs
 nav_order: 1
 has_toc: True
@@ -23,7 +23,7 @@ Each team will only need to submit one `TEAM_<N>.zip` to Canvas.
 
 For organizing the submission better, please include a single report (PDF format) inside your folder that includes your answers, explanations, video file names and **copy of the Python code** that you edit/write. Please make sure to include your team member names and IDs in the report. 
 
-**Deadline:** To submit your solution, please upload the corresponding files under `Assignment > Lab 9` by **Tue, Nov 25 11:59 EST**.
+**Deadline:** To submit your solution, please upload the corresponding files under `Assignment > Lab 7` by **Thu, Nov 5 11:59 EST**.
 
 
 ## Overview
@@ -33,8 +33,8 @@ In this scenario, one Crazyflie (`cf_2`) acts as the **pursuer** that must track
 
 
 ## Instructions for using the files 
-1. Pull the latest version of `ae740_labs` repository to get the Lab 9 files (in the `lab9` folder): `git pull origin main`.
-2. Copy the `crazyflie_self_adap_mpc_node.py` and `self_adaptive_mpc.py` files from the `lab9` folder to your existing `ros2_ws/src/controller_pkg/controller_pkg/` directory.
+1. Pull the latest version of `ae740_labs` repository to get the Lab 7 files (in the `lab7` folder): `git pull origin main`.
+2. Copy the `crazyflie_self_adap_mpc_node.py` and `self_adaptive_mpc.py` files from the `lab7` folder to your existing `ros2_ws/src/controller_pkg/controller_pkg/` directory.
 3. Inside the `ros2_ws/src/controller_pkg` directory, add the new node as an executable to the `setup.py` file. You can choose to use the `ros2 run` command or create a launch file to run the node.
 4. **Important:** You will need to launch **two** Crazyflie drones in the simulator - one as the target (`cf_1`) and one as the pursuer (`cf_2`). The target drone should be running an MPC controller that you developed in previous labs.
 
@@ -52,7 +52,7 @@ In this scenario, one Crazyflie (`cf_2`) acts as the **pursuer** that must track
 
 
 ## Comments on Implementation Details
-1. **Multiple Experts:** Unlike Lab 6 which used a single learned model, Lab 9 initializes multiple expert predictors with different hyperparameters.
+1. **Multiple Experts:** Unlike Lab 6 which used a single learned model, Lab 7 initializes multiple expert predictors with different hyperparameters.
 2. **Memory Horizon:** Each expert uses a **memory horizon** (e.g., 3-5 past positions) of the target to predict future positions. This is different from Lab 6 which used current state only. These past positions are spaced same as the MPC time step (0.1s), not the controller update rate (50 Hz -> 0.02s).
 3. **Random Features:** Similar to Lab 6, we use Random Fourier Features (RFF) with cosine activation functions. Each expert has its own set of random features (w, b). The update step arithmetic is similar to Lab 6, but now done with different set of features for each expert.
 4. **Adaptive Selection Module:** The AS module maintains a probability distribution over experts and updates it based on prediction errors. Variable `selection_interval` determines how often to update expert selection (since this doesn't happen every iteration). The choice of reward (or loss) function are open to experimentation, or can be kept same as the paper.
